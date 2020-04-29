@@ -2,7 +2,7 @@
 
 #include "keymap_norwegian.h"
 
-enum { _BASE, _TYPE, _RAISE, _TOP, _FUN, _SYM, _WIN };
+enum { _BASE, _TYPE, _RAISE, _TOP, _FUN, _SYM };
 
 #define OS_CTL OSM(MOD_LCTL)
 #define OS_ALT OSM(MOD_LALT)
@@ -68,13 +68,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______,
     XXXXXXX, _______, _______, _______, XXXXXXX, LANG,             XXXXXXX, _______, _______, _______, _______
   ),
-
-  [_WIN] = LAYOUT_planck_mit(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-  ),
 };
 
 #define ___ {0,0,0}
@@ -114,13 +107,6 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
   [_SYM] = {
     ___, ___, CYA, ___, ___, ___, ___, ___, ___, ___, CYA, ___,
     CYA, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
-    ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
-    ___, ___, ___, ___, ___, ___,      ___, ___, ___, ___, ___
-  },
-
-  [_WIN] = {
-    ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
-    ___, PIN, PIN, PIN, PIN, ___, ___, PIN, PIN, PIN, PIN, ___,
     ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___, ___,
     ___, ___, ___, ___, ___, ___,      ___, ___, ___, ___, ___
   },
@@ -195,10 +181,6 @@ void rgb_matrix_indicators_user(void) {
     rgb_matrix_set_color(30, 255, 255, 255);
     rgb_matrix_set_color(24, 255, 255, 255); // KC_Z
     rgb_matrix_set_color(35, 255, 255, 255); // KC_SLSH
-  } else if (mods & MOD_MASK_SHIFT) {
-    // rgb_matrix_set_color(30, 255, 255, 255);
-    // rgb_matrix_set_color(24, 255, 255, 255); // KC_Z
-    // rgb_matrix_set_color(35, 255, 255, 255); // KC_SLSH
   }
 
   if (locked_osm & MOD_MASK_CTRL) {
@@ -209,33 +191,19 @@ void rgb_matrix_indicators_user(void) {
     rgb_matrix_set_color(29, 255, 255, 255);
     rgb_matrix_set_color(25, 255, 255, 255); // KC_X
     rgb_matrix_set_color(34, 255, 255, 255); // KC_DOT
-  } else if (mods && MOD_MASK_CTRL) {
-    // rgb_matrix_set_color(29, 255, 255, 255);
-    // rgb_matrix_set_color(25, 255, 255, 255); // KC_X
-    // rgb_matrix_set_color(34, 255, 255, 255); // KC_DOT
   }
 
   if (locked_osm & MOD_MASK_ALT) {
     rgb_matrix_set_color(38, 238, 67, 67);
   } else if (osm & MOD_MASK_ALT) {
     rgb_matrix_set_color(38, 255, 255, 255);
-  } else if (mods & MOD_MASK_ALT) {
-    // rgb_matrix_set_color(38, 255, 255, 255);
-}
+  }
 
   if (locked_osm & MOD_MASK_GUI) {
     rgb_matrix_set_color(37, 238, 67, 67);
   } else if (osm & MOD_MASK_GUI) {
     rgb_matrix_set_color(37, 255, 255, 255);
-  } else if (mods & MOD_MASK_GUI) {
-    // rgb_matrix_set_color(37, 255, 255, 255);
   }
-
-  // if (IS_LAYER_ON(_FUN) && IS_LAYER_ON(_BASE)) {
-  //   rgb_matrix_set_color(36, 245, 138, 255);
-  // } else if (IS_LAYER_ON(_FUN) && IS_LAYER_ON(_TYPE)) {
-  //   rgb_matrix_set_color(37, 245, 138, 255);
-  // }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
