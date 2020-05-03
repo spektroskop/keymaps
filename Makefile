@@ -5,13 +5,12 @@ define make_keyboard
 $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME):
 	ln -s $(PWD)/$(1) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 
-compile_$(1): $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
+compile_$(1): $(PWD)/qmk_firmware/users/$(USERNAME) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 	qmk compile -kb $(2) -km $(USERNAME)
 
-flash_$(1): $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
+flash_$(1): $(PWD)/qmk_firmware/users/$(USERNAME) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 	qmk flash -kb $(2) -km $(USERNAME)
 endef	
-
 
 all: compile_planck compile_preonic
 
