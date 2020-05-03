@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef AUDIO_ENABLE
+#define STARTUP_SONG SONG(PLANCK_SOUND)
+#endif
+
 #define UNICODE_SELECTED_MODES UC_LNX, UC_OSX
 #define UNICODE_KEY_LNX LCTL(LSFT(KC_U))
 

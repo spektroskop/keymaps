@@ -1,36 +1,32 @@
 QMK_HOME := $(PWD)/qmk_firmware
+USERNAME := spektroskop
 
-username := spektroskop
-keymap = $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(username)_$(2)
-qmk = qmk $(1) -kb $(2) -km $(username)_$(3)
+define make_keyboard
+$(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME):
+	ln -s $(PWD)/$(1) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 
-all: compile_split_planck compile_preonic compile_split_preonic
+compile_$(1): $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
+	qmk compile -kb $(2) -km $(USERNAME)
+
+flash_$(1): $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
+	qmk flash -kb $(2) -km $(USERNAME)
+endef	
+
+
+all: compile_planck compile_preonic
+
+update: 
+	git submodule foreach git pull origin master
 
 $(PWD)/qmk_firmware/users/spektroskop:
-	ln -s $(PWD)/user $(PWD)/qmk_firmware/users/$(username)
+	ln -s $(PWD)/user $(PWD)/qmk_firmware/users/$(USERNAME)
 
 unlink:
-	rm -f $(PWD)/qmk_firmware/users/$(username)
-	rm -f $(PWD)/qmk_firmware/keyboards/planck/keymaps/$(username)*
-	rm -f $(PWD)/qmk_firmware/keyboards/preonic/keymaps/$(username)*
+	rm -f $(PWD)/qmk_firmware/users/$(USERNAME)
+	rm -f $(PWD)/qmk_firmware/keyboards/planck/keymaps/$(USERNAME)
+	rm -f $(PWD)/qmk_firmware/keyboards/preonic/keymaps/$(USERNAME)
 
-$(call keymap,planck,split_planck):
-	ln -s $(PWD)/split_planck $(call keymap,planck,split_planck)
-compile_split_planck: $(call keymap,planck,split_planck)
-	$(call qmk,compile,planck/ez,split_planck)
-flash_split_planck: $(call keymap,planck,split_planck)
-	$(call qmk,flash,planck/ez,split_planck)
+$(eval $(call make_keyboard,planck,planck/ez))
 
-$(call keymap,preonic,preonic):
-	ln -s $(PWD)/preonic $(call keymap,preonic,preonic)
-compile_preonic: $(call keymap,preonic,preonic)
-	$(call qmk,compile,preonic/rev3,preonic)
-flash_preonic: $(call keymap,preonic,preonic)
-	$(call qmk,flash,preonic/rev3,preonic)
+$(eval $(call make_keyboard,preonic,preonic/rev3))
 
-$(call keymap,preonic,split_preonic):
-	ln -s $(PWD)/split_preonic $(call keymap,preonic,split_preonic)
-compile_split_preonic: $(call keymap,preonic,split_preonic)
-	$(call qmk,compile,preonic/rev3,split_preonic)
-flash_split_preonic: $(call keymap,preonic,split_preonic)
-	$(call qmk,flash,preonic/rev3,split_preonic)
