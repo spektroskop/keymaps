@@ -23,7 +23,14 @@ unlink\:$(1):
 
 compile_targets += compile_$(1)
 unlink_targets += unlink_$(1)
-endef	
+endef
+
+init:
+	git submodule init
+	git submodule update
+
+setup:
+	qmk setup
 
 update:
 	git submodule foreach git pull origin master
