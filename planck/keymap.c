@@ -20,63 +20,34 @@ enum keycodes {
 };
 
 enum dances {
-  TD_SYM = 0,
-  TD_SHIFT
+  _TD_SYM = 0,
 };
-
-void td_shift_finished(qk_tap_dance_state_t *state, void *user_data);
-void td_shift_reset(qk_tap_dance_state_t *state, void *user_data);
 
 void td_sym_finished(qk_tap_dance_state_t *state, void *user_data);
 void td_sym_reset(qk_tap_dance_state_t *state, void *user_data);
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_SYM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_sym_finished, td_sym_reset),
-  [TD_SHIFT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_shift_finished, td_shift_reset)
+  [_TD_SYM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_sym_finished, td_sym_reset),
 };
 
-#define CTL_Q LCTL_T(KC_Q)
 #define SFT_Z LSFT_T(KC_Z)
-#define CTL_P RCTL_T(KC_P)
 #define SFT_SLS RSFT_T(KC_SLSH)
-
 #define DSK_1 LGUI(KC_1)
 #define DSK_2 LGUI(KC_2)
 #define DSK_3 LGUI(KC_3)
 #define DSK_4 LGUI(KC_4)
-
 #define LANG LGUI(KC_SPACE)
-
-#define OS_SFT OSM(MOD_LSFT)
-#define OS_GUI OSM(MOD_LGUI)
-#define OS_CTL OSM(MOD_LCTL)
-#define OS_ALT OSM(MOD_LALT)
-
+#define MOUSE TG(_MOUSE)
 #define LT_ENT LT(_LOWER, KC_ENT)
 #define LT_SPC LT(_RAISE, KC_SPC)
-#define MOUSE TG(_MOUSE)
-#define MO_SYM MO(_SYMBOL)
+#define TD_SYM TD(_TD_SYM)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_planck_grid(
     KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC, KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, 
     KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______, _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
     SFT_Z,   KC_X,    KC_C,    KC_V,    KC_B,    _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  SFT_SLS,
-    TD(TD_SYM), KC_LALT, KC_LCTL, LT_ENT,  KC_TAB,  KC_ESC,  KC_ESC,  KC_BSPC, LT_SPC,  KC_RCTL, KC_LALT, KC_LGUI
-  ),                                  
-
-  [_LSHIFT] = LAYOUT_planck_grid(
-    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC, KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, 
-    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______, _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
-    SFT_Z,   KC_X,    KC_C,    KC_V,    KC_B,    _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  SFT_SLS,
-    TD(TD_SYM), KC_LALT, KC_LCTL, LT_ENT,  KC_TAB,  KC_ESC,  KC_ESC,  KC_BSPC, LT_SPC,  KC_RCTL, KC_LALT, KC_LGUI
-  ),                                  
-
-  [_RSHIFT] = LAYOUT_planck_grid(
-    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC, KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, 
-    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______, _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
-    SFT_Z,   KC_X,    KC_C,    KC_V,    KC_B,    _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  SFT_SLS,
-    TD(TD_SYM), KC_LALT, KC_LCTL, LT_ENT,  KC_TAB,  KC_ESC,  KC_ESC,  KC_BSPC, LT_SPC,  KC_RCTL, KC_LALT, KC_LGUI
+    TD_SYM,  KC_LALT, KC_LCTL, LT_ENT,  KC_TAB,  KC_ESC,  KC_ESC,  KC_BSPC, LT_SPC,  KC_RCTL, KC_LALT, KC_LGUI
   ),                                  
 
   [_RAISE] = LAYOUT_planck_grid(
@@ -223,10 +194,4 @@ void td_sym_reset(qk_tap_dance_state_t *state, void *user_data) {
     tap_code16(LGUI(KC_SPACE));
     layer_off(_SYMBOL);
   }
-}
-
-void td_shift_finished(qk_tap_dance_state_t *state, void *user_data) {
-}
-
-void td_shift_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
