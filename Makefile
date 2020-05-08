@@ -10,15 +10,15 @@ $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME):
 	ln -s $(PWD)/$(1) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 
 .PHONY: compile_$(1)
-compile_$(1): $(PWD)/qmk_firmware/users/$(USERNAME) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
+compile\:$(1): $(PWD)/qmk_firmware/users/$(USERNAME) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 	qmk compile -kb $(2) -km $(USERNAME)
 
 .PHONY: flash_$(1)
-flash_$(1): $(PWD)/qmk_firmware/users/$(USERNAME) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
+flash\:$(1): $(PWD)/qmk_firmware/users/$(USERNAME) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 	qmk flash -kb $(2) -km $(USERNAME)
 
 .PHONY: unlink_$(1)
-unlink_$(1):
+unlink\:$(1):
 	rm -f $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 
 compile_targets += compile_$(1)
