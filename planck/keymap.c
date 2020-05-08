@@ -4,8 +4,6 @@
 
 enum layers { 
   _BASE, 
-  _LSHIFT,
-  _RSHIFT,
   _RAISE, 
   _LOWER,
   _ADJUST, 
