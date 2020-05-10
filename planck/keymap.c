@@ -78,7 +78,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 #define SYM_R1  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______, _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN
 #define SYM_R2  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, _______, KC_6,    SFT_7,   KC_8,    KC_9,    KC_0
-#define SYM_R3  KC_GRV,  KC_QUOT, KC_BSLS, KC_MINS, KC_EQL,  _______, _______, KC_TILD, KC_DQUO, _______, _______, _______
+#define SYM_R3  KC_GRV,  KC_QUOT, KC_BSLS, KC_MINS, KC_EQL,  _______, _______, KC_TILD, KC_DQUO, KC_COMM, KC_DOT,  KC_SLSH
 #define SYM_R4  XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______, KC_PIPE, KC_UNDS, KC_PLUS
 
 #define SFT_R1  S_Q,     S_W,     S_E,     S_R,     S_T,     KC_LCBR, KC_RCBR, S_Y,     S_U,     S_I,     S_O,     S_P
