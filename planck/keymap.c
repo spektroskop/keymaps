@@ -4,14 +4,16 @@
 
 enum layers { 
   _BASE_ENT_SPC, _BASE_SPC, _BASE_Z_SLSH, _BASE_F_J,
-  _SHIFT, _SHIFT_SYM1, _SHIFT_SYM2,
-  _SYM1, _SYM2,
+  _SHIFT, _SHIFT_SYM1, _SHIFT_SYM2, _SHIFT_SYM3, _SHIFT_SYM4,
+  _SYM1, _SYM2, _SYM3, _SYM4,
   _FUNC, _LANG, _MOUSE, _SELECT,
 };
 
 enum keycodes {
   XK_LANG = SAFE_RANGE,
   XK_SEL,
+  XK_SYM3,
+  XK_SYM4,
 };
 
 enum dances {
@@ -42,9 +44,10 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 #define MOUSE TG(_MOUSE)
 
-#define ENT_SFT LT(_SHIFT_SYM2, KC_ENT)
+#define ENT_SFT LT(_SHIFT_SYM4, KC_ENT)
+#define SPC_SFT LT(_SHIFT_SYM3, KC_SPC)
+
 #define ENT_SF3 LT(_SHIFT, KC_ENT)
-#define SPC_SFT LT(_SHIFT_SYM1, KC_SPC)
 #define SPC_SF3 LT(_SHIFT, KC_SPC)
 
 #define TAB_FUN LT(_FUNC, KC_TAB)
@@ -128,12 +131,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX, _______, _______, _______, _______, _______, _______, _______, OS_SYM2, _______, _______, _______
   ),
 
+  [_SHIFT_SYM3] = LAYOUT_planck_grid_wrapper(
+    SFT_R1, SFT_R2, SFT_R3,
+    XXXXXXX, _______, _______, XK_SYM3, _______, _______, _______, _______, _______, _______, _______,  _______
+  ),
+
+  [_SHIFT_SYM4] = LAYOUT_planck_grid_wrapper(
+    SFT_R1, SFT_R2, SFT_R3,
+    XXXXXXX, _______, _______, _______, _______, _______, _______, _______, XK_SYM4, _______, _______, _______
+  ),
+
   [_SYM1] = LAYOUT_planck_grid_wrapper(
     SYM_R1, SYM_R2, SYM_R3, SYM_R4
   ),
 
   [_SYM2] = LAYOUT_planck_grid_wrapper(
     SYM_R1, SYM_R2, SYM_R3, SYM_R4
+  ),
+
+  [_SYM3] = LAYOUT_planck_grid_wrapper(
+    SYM_R1, SYM_R2, SYM_R3,
+    XXXXXXX, _______, _______, XK_SYM3, _______, _______, _______, _______, _______, KC_PIPE, KC_UNDS, KC_PLUS
+  ),
+
+  [_SYM4] = LAYOUT_planck_grid_wrapper(
+    SYM_R1, SYM_R2, SYM_R3,
+    XXXXXXX, _______, _______, _______, _______, _______, _______, _______, XK_SYM4, KC_PIPE, KC_UNDS, KC_PLUS
   ),
 
   [_FUNC] = LAYOUT_planck_grid_wrapper(
@@ -195,6 +218,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   switch (get_highest_layer(state)) {
     case _SYM1: set_led_levels(32, 0); break;
     case _SYM2: set_led_levels(0, 32); break;
+    case _SYM3: set_led_levels(32, 0); break;
+    case _SYM4: set_led_levels(0, 32); break;
     case _FUNC: set_led_levels(32, 32); break;
     case _MOUSE: set_led_levels(32, 32); break;
     default: set_led_levels(0, 0); break;
@@ -233,9 +258,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
       break;
 
+    case XK_SYM3:
+     if (record->event.pressed) {
+       layer_invert(_SYM3);
+     }
+
+     return false;
+
+   case XK_SYM4:
+     if (record->event.pressed) {
+       layer_invert(_SYM4);
+     }
+
+     return false;
+
     case ENT_SFT:
       if (!record->event.pressed) {
-        if (layer_state_is(_SYM1) || layer_state_is(_SYM2)) {
+        if (layer_state_is(_SYM3) || layer_state_is(_SYM4)) {
           layer_move(_BASE_ENT_SPC);
         }
       }
@@ -244,7 +283,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case SPC_SFT:
       if (!record->event.pressed) {
-        if (layer_state_is(_SYM1) || layer_state_is(_SYM2)) {
+        if (layer_state_is(_SYM3) || layer_state_is(_SYM4)) {
           layer_move(_BASE_ENT_SPC);
         }
       }
