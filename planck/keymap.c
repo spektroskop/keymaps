@@ -4,7 +4,7 @@
 
 enum layers { 
   _BASE_ENT_SPC, _BASE_SPC, _BASE_Z_SLSH, _BASE_F_J,
-  _SHIFT, _SHIFT_SYM1, _SHIFT_SYM2, _SHIFT_SYM3, _SHIFT_SYM4,
+  _SHIFT, _SHIFT_SYM3, _SHIFT_SYM4,
   _SYM1, _SYM2, _SYM3, _SYM4,
   _FUNC, _LANG, _MOUSE, _SELECT,
 };
@@ -35,37 +35,32 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define SFT_7 RSFT_T(KC_7)
 #define SFT_SPC RSFT_T(KC_SPC)
 #define GUI_ESC LGUI_T(KC_ESC)
+#define CTL_TAB LCTL_T(KC_TAB)
+#define CTL_BSP RCTL_T(KC_BSPC)
 
 #define DSK_1 LGUI(KC_1)
 #define DSK_2 LGUI(KC_2)
 #define DSK_3 LGUI(KC_3)
 #define DSK_4 LGUI(KC_4)
+
 #define LANG LGUI(KC_SPACE)
 
 #define MOUSE TG(_MOUSE)
 
 #define ENT_SFT LT(_SHIFT_SYM4, KC_ENT)
 #define SPC_SFT LT(_SHIFT_SYM3, KC_SPC)
-
 #define ENT_SF3 LT(_SHIFT, KC_ENT)
 #define SPC_SF3 LT(_SHIFT, KC_SPC)
 
-#define TAB_FUN LT(_FUNC, KC_TAB)
-
-#define TAB_SYM LT(_SYM1, KC_TAB)
-#define BSP_SYM LT(_SYM2, KC_BSPC)
 #define SYM1 MO(_SYM1)
 #define SYM2 MO(_SYM2)
-#define CTL_TAB LCTL_T(KC_TAB)
-#define CTL_BSP RCTL_T(KC_BSPC)
-
+#define TAB_SYM LT(_SYM1, KC_TAB)
+#define BSP_SYM LT(_SYM2, KC_BSPC)
 #define ENT_SYM LT(_SYM1, KC_ENT)
 #define SPC_SYM LT(_SYM2, KC_SPC)
+#define TAB_FUN LT(_FUNC, KC_TAB)
 
 #define TD_LANG TD(_TD_LANG)
-
-#define OS_SYM1 OSL(_SYM1)
-#define OS_SYM2 OSL(_SYM2)
 
 #define DF_1 DF(_BASE_ENT_SPC)
 #define DF_2 DF(_BASE_SPC)
@@ -88,7 +83,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define ______________ARROWS______________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 
 #define F_KEYS KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12
-
 
 #define LAYOUT_planck_grid_wrapper(...) LAYOUT_planck_grid(__VA_ARGS__)
 
@@ -119,16 +113,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_SHIFT] = LAYOUT_planck_grid_wrapper(
     SFT_R1, SFT_R2, SFT_R3,
     XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______
-  ),
-
-  [_SHIFT_SYM1] = LAYOUT_planck_grid_wrapper(
-    SFT_R1, SFT_R2, SFT_R3,
-    XXXXXXX, _______, _______, OS_SYM1, _______, _______, _______, _______, _______, _______, _______,  _______
-  ),
-
-  [_SHIFT_SYM2] = LAYOUT_planck_grid_wrapper(
-    SFT_R1, SFT_R2, SFT_R3,
-    XXXXXXX, _______, _______, _______, _______, _______, _______, _______, OS_SYM2, _______, _______, _______
   ),
 
   [_SHIFT_SYM3] = LAYOUT_planck_grid_wrapper(
