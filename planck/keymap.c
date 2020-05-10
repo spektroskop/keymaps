@@ -163,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     F_KEYS,
     XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______, ______________ARROWS______________, XXXXXXX,
     XK_SEL,  XXXXXXX, DSK_1,   DSK_2,   DSK_3,   _______, _______, XXXXXXX, MOUSE,   XXXXXXX, XXXXXXX, KC_RSFT,
-    XXXXXXX, _______, _______, _______, _______, RESET,   RESET,   _______, _______, _______, _______, _______
+    XXXXXXX, _______, _______, _______, _______, _______, _______, RESET,   _______, _______, _______, _______
   ),
 
   [_MOUSE] = LAYOUT_planck_grid(
