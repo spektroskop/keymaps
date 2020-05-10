@@ -9,20 +9,20 @@ define make_keyboard
 $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME):
 	ln -s $(PWD)/$(1) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 
-.PHONY: compile_$(1)
-compile\:$(1): $(PWD)/qmk_firmware/users/$(USERNAME) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
+.PHONY: compile--$(1)
+compile--$(1): $(PWD)/qmk_firmware/users/$(USERNAME) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 	qmk compile -kb $(2) -km $(USERNAME)
 
-.PHONY: flash_$(1)
-flash\:$(1): $(PWD)/qmk_firmware/users/$(USERNAME) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
+.PHONY: flash--$(1)
+flash--$(1): $(PWD)/qmk_firmware/users/$(USERNAME) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 	qmk flash -kb $(2) -km $(USERNAME)
 
-.PHONY: unlink_$(1)
-unlink\:$(1):
+.PHONY: unlink--$(1)
+unlink--$(1):
 	rm -f $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/$(USERNAME)
 
-compile_targets += compile_$(1)
-unlink_targets += unlink_$(1)
+compile_targets += compile--$(1)
+unlink_targets += unlink--$(1)
 endef
 
 init:
@@ -41,9 +41,9 @@ $(eval $(call make_keyboard,preonic,preonic/rev3))
 $(PWD)/qmk_firmware/users/$(USERNAME):
 	ln -s $(PWD)/user $(PWD)/qmk_firmware/users/$(USERNAME)
 
-unlink_$(USERNAME):
+unlink_user:
 	rm -f $(PWD)/qmk_firmware/users/$(USERNAME)
 
 compile: $(compile_targets)
 
-unlink: unlink_$(USERNAME) $(unlink_targets)
+unlink: unlink_user $(unlink_targets)
