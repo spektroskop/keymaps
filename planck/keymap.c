@@ -84,7 +84,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 #define ______________ARROWS______________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 
-#define F_KEYS KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
+#define F_KEYS KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12
 
 
 #define LAYOUT_planck_grid_wrapper(...) LAYOUT_planck_grid(__VA_ARGS__)
@@ -136,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     SYM_R1, SYM_R2, SYM_R3, SYM_R4
   ),
 
-  [_FUNC] = LAYOUT_planck_grid(
+  [_FUNC] = LAYOUT_planck_grid_wrapper(
     F_KEYS,
     XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______, ______________ARROWS______________, XXXXXXX,
     XK_SEL,  XXXXXXX, DSK_1,   DSK_2,   DSK_3,   _______, _______, XXXXXXX, MOUSE,   XXXXXXX, XXXXXXX, KC_RSFT,
@@ -150,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX, _______, _______, KC_BTN2, KC_SPC,  _______, _______, KC_BTN3, KC_BTN1, _______, _______, _______
   ),
 
-  [_SELECT] = LAYOUT_planck_grid(
+  [_SELECT] = LAYOUT_planck_grid_wrapper(
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ______________ARROWS______________, XXXXXXX,
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
