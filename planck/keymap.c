@@ -161,7 +161,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             layer_invert(_SYM);
         }
 
-        return true;
+        break;
 
     case LT_ENT1:
     case LT_SPC1:
