@@ -3,7 +3,7 @@
 enum layers {
     _BASE1, _BASE2,
     _LSFT, _RSFT,
-    _LSYM, _RSYM,
+    _SYM,
     _LANG,
     _SEL,
     _MOUSE,
@@ -11,8 +11,7 @@ enum layers {
 };
 
 enum keycodes {
-    XK_LSYM = SAFE_RANGE,
-    XK_RSYM,
+    XK_SYM = SAFE_RANGE,
     XK_SEL,
 };
 
@@ -21,8 +20,8 @@ enum keycodes {
 
 #define LT_ENT LT(_LSFT, KC_ENT)
 #define LT_SPC LT(_RSFT, KC_SPC)
-#define LT_ENT2 LT(_LSYM, KC_ENT)
-#define LT_SPC2 LT(_RSYM, KC_SPC)
+#define LT_ENT2 LT(_SYM, KC_ENT)
+#define LT_SPC2 LT(_SYM, KC_SPC)
 #define FUN_TAB LT(_FUNC, KC_TAB)
 
 #define SFT_Z LSFT_T(KC_Z)
@@ -56,24 +55,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), KC_LCBR,  KC_RCBR, S(KC_Y),  S(KC_U), S(KC_I), S(KC_O), S(KC_P),
         S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), XXXXXXX,  XXXXXXX, S(KC_H),  S(KC_J), S(KC_K), S(KC_L), KC_COLN,
         S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), XXXXXXX,  XXXXXXX, S(KC_N),  S(KC_M), KC_LT,   KC_GT,   KC_QUES,
-        XXXXXXX, _______, _______, _______, KC_TAB,  _______,  _______, _______,  XK_LSYM, _______, _______, XXXXXXX
+        XXXXXXX, _______, _______, _______, KC_TAB,  _______,  _______, _______,  XK_SYM,  _______, _______, XXXXXXX
     ),
 
     [_RSFT] = LAYOUT_planck_grid(
         S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), KC_LCBR,  KC_RCBR, S(KC_Y),  S(KC_U), S(KC_I), S(KC_O), S(KC_P),
         S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), XXXXXXX,  XXXXXXX, S(KC_H),  S(KC_J), S(KC_K), S(KC_L), KC_COLN,
         S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), XXXXXXX,  XXXXXXX, S(KC_N),  S(KC_M), KC_LT,   KC_GT,   KC_QUES,
-        XXXXXXX, _______, _______, XK_RSYM, KC_TAB,  _______,  _______, _______,  _______, _______, _______, XXXXXXX
+        XXXXXXX, _______, _______, XK_SYM,  KC_TAB,  _______,  _______, _______,  _______, _______, _______, XXXXXXX
     ),
 
-    [_LSYM] = LAYOUT_planck_grid(
-        KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, XXXXXXX,  XXXXXXX, KC_CIRC,  KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
-        KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX,  XXXXXXX, KC_6,     KC_7,    KC_8,    KC_9,    KC_0,
-        KC_GRV,  KC_QUOT, KC_BSLS, KC_MINS, KC_EQL,  XXXXXXX,  XXXXXXX, KC_TILD,  KC_DQUO, KC_COMM, KC_DOT,  KC_SLSH,
-        XXXXXXX, _______, _______, _______, KC_TAB,  _______,  _______, _______,  _______, KC_PIPE, KC_UNDS, KC_PLUS
-    ),
-
-    [_RSYM] = LAYOUT_planck_grid(
+    [_SYM] = LAYOUT_planck_grid(
         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, XXXXXXX,  XXXXXXX, KC_CIRC,  KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX,  XXXXXXX, KC_6,     KC_7,    KC_8,    KC_9,    KC_0,
         KC_GRV,  KC_QUOT, KC_BSLS, KC_MINS, KC_EQL,  XXXXXXX,  XXXXXXX, KC_TILD,  KC_DQUO, KC_COMM, KC_DOT,  KC_SLSH,
@@ -116,12 +108,13 @@ void set_led_levels(int left, int right) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
-    case _LSYM:
-        set_led_levels(32, 0);
-        break;
+    case _SYM:
+        if (layer_state_is(_LSFT)) {
+            set_led_levels(32, 0);
+        } else if (layer_state_is(_RSFT)) {
+            set_led_levels(0, 32);
+        }
 
-    case _RSYM:
-        set_led_levels(0, 32);
         break;
 
     case _MOUSE:
@@ -136,43 +129,24 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
-bool lsym_hold = false;
-bool rsym_hold = false;
+bool sym_hold = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-    case XK_LSYM:
+    case XK_SYM:
         if (record->event.pressed)  {
-            // if (!layer_state_is(_LSYM))
-            //     lsym_hold = true;
-            // layer_invert(_LSYM);
+            // if (!layer_state_is(_SYM))
+            //     sym_hold = true;
+            // layer_invert(_SYM);
 
-            if (!layer_state_is(_LSYM)) {
-                lsym_hold = true;
-                layer_invert(_LSYM);
+            if (!layer_state_is(_SYM)) {
+                sym_hold = true;
+                layer_invert(_SYM);
             } else {
                 tap_code(KC_SPC);
             }
         } else {
-            lsym_hold = false;
-        }
-
-        return false;
-
-    case XK_RSYM:
-        if (record->event.pressed)  {
-            // if (!layer_state_is(_RSYM))
-            //     rsym_hold = true;
-            // layer_invert(_RSYM);
-
-            if (!layer_state_is(_RSYM)) {
-                rsym_hold = true;
-                layer_invert(_RSYM);
-            } else {
-                tap_code(KC_ENT);
-            }
-        } else {
-            rsym_hold = false;
+            sym_hold = false;
         }
 
         return false;
@@ -199,7 +173,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case LT_ENT:
     case LT_SPC:
         if (!record->event.pressed) {
-            if (layer_state_is(_LSYM) || layer_state_is(_RSYM)) {
+            if (layer_state_is(_SYM)) {
                 layer_move(_BASE1);
             }
         }
@@ -212,18 +186,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-    case XK_LSYM:
-    case XK_RSYM:
+    case XK_SYM:
         break;
     default:
-        if (lsym_hold) {
-            layer_invert(_LSYM);
-            lsym_hold = false;
-        }
-
-        if (rsym_hold) {
-            layer_invert(_RSYM);
-            rsym_hold = false;
+        if (sym_hold) {
+            layer_invert(_SYM);
+            sym_hold = false;
         }
     }
 }
