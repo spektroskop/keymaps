@@ -20,59 +20,60 @@ enum keycodes {
 #define GUI_1 LGUI(KC_1)
 #define GUI_2 LGUI(KC_2)
 #define GUI_3 LGUI(KC_3)
+#define SFT_TAB S(KC_TAB)
+#define SFT_INS S(KC_INS)
+#define SFT_DEL S(KC_DEL)
 
+#define DF_1 DF(_BASE1)
+#define DF_2 DF(_BASE2)
 #define LT_ENT1 LT(_LSFT, KC_ENT)
 #define LT_SPC1 LT(_RSFT, KC_SPC)
-
 #define LT_ENT2 LT(_SYM, KC_ENT)
 #define LT_SPC2 LT(_SYM, KC_SPC)
 #define SFT_Z LSFT_T(KC_Z)
 #define SFT_SLSH RSFT_T(KC_SLSH)
+#define FUN_DEL LT(_FUNC, KC_DEL)
+#define FUN_INS LT(_FUNC, KC_INS)
+#define MOUSE TG(_MOUSE)
+#define NOR MO(_NOR)
+
+#define OS_LCTL OSM(MOD_LCTL)
+#define OS_RCTL OSM(MOD_RCTL)
+#define OS_LALT OSM(MOD_LALT)
+#define OS_RALT OSM(MOD_RALT)
 
 #define EUR_AA ALGR(KC_W)
 #define EUR_AE ALGR(KC_Q)
 #define EUR_OE ALGR(KC_L)
 
-#define MOUSE TG(_MOUSE)
-#define NOR MO(_NOR)
-#define FUN_DEL LT(_FUNC, KC_DEL)
-#define FUN_INS LT(_FUNC, KC_INS)
-
-#define DF_1 DF(_BASE1)
-#define DF_2 DF(_BASE2)
-
-#define SFT_TAB S(KC_TAB)
-#define SFT_INS S(KC_INS)
-#define SFT_DEL S(KC_DEL)
-
 #define __zzz__ _______
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE1] = LAYOUT_planck_grid(
-        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC, KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
+        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX, XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
         KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_TAB,  KC_BSPC, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
-        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-        NOR,     FUN_DEL, KC_LALT, LT_ENT1, KC_LCTL, GUI_ESC, GUI_ESC, KC_RCTL, LT_SPC1, KC_LALT, FUN_INS, KC_RGUI
+        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_RBRC, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
+        NOR,     FUN_DEL, OS_LALT, LT_ENT1, OS_LCTL, GUI_ESC, GUI_ESC, OS_RCTL, LT_SPC1, OS_LALT, FUN_INS, KC_RGUI
     ),
 
     [_BASE2] = LAYOUT_planck_grid(
-        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC, KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
+        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX, XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
         KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_TAB,  KC_BSPC, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
-        SFT_Z,   KC_X,    KC_C,    KC_V,    KC_B,    XXXXXXX, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  SFT_SLSH,
-        NOR,     FUN_DEL, KC_LALT, LT_ENT2, KC_LCTL, GUI_ESC, GUI_ESC, KC_RCTL, LT_SPC2, KC_LALT, FUN_INS, KC_RGUI
+        SFT_Z,   KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_RBRC, KC_N,    KC_M,    KC_COMM, KC_DOT,  SFT_SLSH,
+        NOR,     FUN_DEL, OS_LALT, LT_ENT2, OS_LCTL, GUI_ESC, GUI_ESC, OS_RCTL, LT_SPC2, OS_LALT, FUN_INS, KC_RGUI
     ),
 
     [_LSFT] = LAYOUT_planck_grid(
-        S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), KC_LCBR, KC_RCBR, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
+        S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), XXXXXXX, XXXXXXX, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
         S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), SFT_TAB, _______, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_COLN,
-        S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), XXXXXXX, XXXXXXX, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
+        S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), KC_LCBR, KC_RCBR, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
         XXXXXXX, KC_DEL,  _______, __zzz__, _______, _______, _______, _______, XK_SYM,  _______, SFT_INS, _______
     ),
 
     [_RSFT] = LAYOUT_planck_grid(
-        S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), KC_LCBR, KC_RCBR, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
+        S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), XXXXXXX, XXXXXXX, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
         S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), SFT_TAB, _______, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_COLN,
-        S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), XXXXXXX, XXXXXXX, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
+        S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), KC_LCBR, KC_RCBR, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
         XXXXXXX, KC_DEL,  _______, XK_SYM,  _______, _______, _______, _______, __zzz__, _______, SFT_INS, _______
     ),
 
@@ -126,7 +127,7 @@ bool is_press(keyrecord_t *record) {
 }
 
 bool is_release(keyrecord_t *record) {
-    return !is_press(record);
+    return !record->event.pressed;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -141,7 +142,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         break;
 
     case _MOUSE:
-    case _FUNC:
         set_led_levels(32, 32);
         break;
 
@@ -153,35 +153,41 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool sym_hold = false;
+bool sym_bspc = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case XK_SYM:
         if (is_release(record))  {
+            if (sym_bspc) {
+                unregister_code(KC_BSPC);
+                sym_bspc = true;
+            }
+
             sym_hold = false;
         } else if (layer_state_is(_SYM)) {
-            tap_code(KC_SPC);
+            if (layer_state_is(_LSFT)) {
+                register_code(KC_BSPC);
+                sym_bspc = true;
+            } else if (layer_state_is(_RSFT)) {
+                tap_code(KC_TAB);
+            }
         } else {
-            sym_hold = true;
             layer_invert(_SYM);
+            sym_hold = true;
         }
-
-        return true;
 
     case GUI_ESC:
         if (is_release(record) && layer_state_is(_SYM)) {
             layer_invert(_SYM);
+            return false;
         }
-
-        return true;
 
     case LT_ENT1:
     case LT_SPC1:
         if (is_release(record) && layer_state_is(_SYM)) {
             layer_move(_BASE1);
         }
-
-        return true;
 
     case XK_SEL:
         if (is_press(record)) {
@@ -190,20 +196,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code(KC_GRV);
         }
 
-        return true;
-
     case FUN_DEL:
     case FUN_INS:
         if (is_release(record) && layer_state_is(_SEL)) {
             layer_off(_SEL);
             unregister_code(KC_LGUI);
         }
-
-        return true;
-
-    default:
-        return true;
     }
+
+    return true;
 }
 
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
