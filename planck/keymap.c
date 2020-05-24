@@ -1,116 +1,130 @@
 #include QMK_KEYBOARD_H
+#include <print.h>
 
 enum layers {
-    _BASE1, _BASE2,
-    _LSFT, _RSFT,
+    _BASE,
+    _LSFT,
+    _RSFT,
     _SYM,
+    _FUN,
     _NOR,
-    _SEL,
-    _MOUSE,
-    _FUNC,
 };
 
 enum keycodes {
     XK_SYM = SAFE_RANGE,
-    XK_SEL,
 };
 
-#define GUI_ESC LGUI_T(KC_ESC)
-#define LANG LCTL(KC_SPACE)
-#define GUI_1 LGUI(KC_1)
-#define GUI_2 LGUI(KC_2)
-#define GUI_3 LGUI(KC_3)
+enum combos {
+  ESC_COMBO,
+};
+
+const uint16_t PROGMEM esc_combo[] = {KC_J, KC_K, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [ESC_COMBO] = COMBO(esc_combo, KC_ESC),
+};
+
+#define ___z___ _______
+
+#define BRC_FUN LT(_FUN, KC_LBRC)
+#define ENT_SFT LT(_LSFT, KC_ENT)
+#define TAB_CTL MT(MOD_LCTL, KC_TAB)
 #define S_TAB S(KC_TAB)
+
+#define INS_ALT MT(MOD_LALT, KC_INS)
+#define SPC_SFT LT(_RSFT, KC_SPC)
+#define BRC_GUI MT(MOD_RGUI, KC_RBRC)
 #define S_INS S(KC_INS)
 
-#define DF_1 DF(_BASE1)
-#define DF_2 DF(_BASE2)
-#define LT_ENT1 LT(_LSFT, KC_ENT)
-#define LT_SPC1 LT(_RSFT, KC_SPC)
-#define LT_ENT2 LT(_SYM, KC_ENT)
-#define LT_SPC2 LT(_SYM, KC_SPC)
-#define SFT_Z LSFT_T(KC_Z)
-#define SFT_SLSH RSFT_T(KC_SLSH)
-#define FUN_DEL LT(_FUNC, KC_DEL)
-#define FUN_INS LT(_FUNC, KC_INS)
-#define MOUSE TG(_MOUSE)
-#define NOR MO(_NOR)
-
-#define OS_LCTL OSM(MOD_LCTL)
-#define OS_RCTL OSM(MOD_RCTL)
-#define OS_LALT OSM(MOD_LALT)
-#define OS_RALT OSM(MOD_RALT)
-
+#define NOR_V LT(_NOR, KC_V)
+#define NOR_M LT(_NOR, KC_M)
 #define EUR_AA ALGR(KC_W)
 #define EUR_AE ALGR(KC_Q)
 #define EUR_OE ALGR(KC_L)
 
-#define __zzz__ _______
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_BASE1] = LAYOUT_planck_grid(
-        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX, XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
-        KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_TAB,  KC_BSPC, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
-        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_RBRC, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
-        NOR,     FUN_DEL, OS_LALT, LT_ENT1, OS_LCTL, GUI_ESC, GUI_ESC, OS_RCTL, LT_SPC1, OS_LALT, FUN_INS, KC_RGUI
-    ),
+    /*
+     * ,-----------------------------------------------------------------------.
+     * |  q     w     e     r     t                 y     u     i     o     p  |
+     * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
+     * |  a     s     d     f     g                 h     j esc k     l     ;  |
+     * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
+     * |  z     x     c     v     b                 n     m     ,     .    /   |
+     * |                   nor                           nor                   |
+     * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----'
+     * |              [    ent   tab               ins   spc    ]              |
+     * |             fun   sft   ctl               alt   sft   gui             |
+     * |                   esc                           bsp                   |
+     * `-----------------------------------------------+-----+-----+-----+-----'
+     */
 
-    [_BASE2] = LAYOUT_planck_grid(
-        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX, XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
-        KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_TAB,  KC_BSPC, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
-        SFT_Z,   KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC, KC_RBRC, KC_N,    KC_M,    KC_COMM, KC_DOT,  SFT_SLSH,
-        NOR,     FUN_DEL, OS_LALT, LT_ENT2, OS_LCTL, GUI_ESC, GUI_ESC, OS_RCTL, LT_SPC2, OS_LALT, FUN_INS, KC_RGUI
+    [_BASE] = LAYOUT_planck_grid(
+        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______, _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
+        KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______, _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
+        KC_Z,    KC_X,    KC_C,    NOR_V,   KC_B,    _______, _______, KC_N,    NOR_M,   KC_COMM, KC_DOT,  KC_SLSH,
+        _______, _______, BRC_FUN, ENT_SFT, TAB_CTL, _______, _______, INS_ALT, SPC_SFT, BRC_GUI, _______, _______
     ),
 
     [_LSFT] = LAYOUT_planck_grid(
-        S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), XXXXXXX, XXXXXXX, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
-        S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), S_TAB,   KC_BSPC, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_COLN,
-        S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), KC_LCBR, KC_RCBR, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
-        XXXXXXX, KC_DEL,  _______, __zzz__, _______, _______, _______, _______, XK_SYM,  _______, S_INS,   _______
+        S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), _______, _______, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
+        S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), _______, _______, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_COLN,
+        S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), _______, _______, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
+        _______, _______, KC_LCBR, ___z___, S_TAB,   _______, _______, S_INS,   XK_SYM,  KC_RCBR, _______, _______
     ),
 
     [_RSFT] = LAYOUT_planck_grid(
-        S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), XXXXXXX, XXXXXXX, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
-        S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), S_TAB,   KC_BSPC, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_COLN,
-        S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), KC_LCBR, KC_RCBR, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
-        XXXXXXX, KC_DEL,  _______, XK_SYM,  _______, _______, _______, _______, __zzz__, _______, S_INS,   _______
+        S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), _______, _______, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
+        S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), _______, _______, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_COLN,
+        S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), _______, _______, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
+        _______, _______, KC_LCBR, XK_SYM,  S_TAB,   _______, _______, S_INS,   ___z___, KC_RCBR,   _______, _______
     ),
+
+    /*
+     * ,-----------------------------------------------------------------------.
+     * |  !     @     #     $     %                 ^     &     *     (     )  |
+     * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
+     * |  1     2     3     4     5                 6     7     8     9     0  |
+     * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
+     * |  `     '     \     -     =                 ~     "     ,     .     _  |
+     * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----'
+     * |                          +                 |                          |
+     * `-----------------------------------------------+-----+-----+-----+-----'
+     */
 
     [_SYM] = LAYOUT_planck_grid(
-        KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, XXXXXXX, XXXXXXX, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
-        KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_TAB,  KC_BSPC, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-        KC_GRV,  KC_QUOT, KC_BSLS, KC_MINS, KC_EQL,  KC_LCBR, KC_RCBR, KC_TILD, KC_DQUO, KC_COMM, KC_DOT,  KC_SLSH,
-        XXXXXXX, XXXXXXX, _______, __zzz__, _______, _______, _______, _______, __zzz__, KC_PIPE, KC_UNDS, KC_PLUS
+        KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______, _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
+        KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+        KC_GRV,  KC_QUOT, KC_SLSH, KC_MINS, KC_EQL,  _______, _______, KC_TILD, KC_DQUO, KC_COMM, KC_DOT,  KC_UNDS,
+        _______, _______, _______, ___z___, KC_PLUS, _______, _______, KC_PIPE, ___z___, _______, _______, _______
     ),
 
-    [_FUNC] = LAYOUT_planck_grid(
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-        XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  DF_1,    DF_2,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
-        XK_SEL,  GUI_1,   GUI_2,   GUI_3,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MOUSE,   XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, __zzz__, _______, KC_ENT,  _______, RESET,   RESET,   _______, KC_SPC,  _______, __zzz__, _______
-    ),
+    /*
+     * ,-----------------------------------------------------------------------.
+     * | f1    f2    f3    f4    f5                f6    f7    f8    f9    f10 |
+     * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
+     * | f11  home   pgup  pgdn  end               left  down  up   right  f12 |
+     * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
+     * |                                                                       |
+     * |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----'
+     * |                                                                       |
+     * `-----------------------------------------------+-----+-----+-----+-----'
+     */
 
-    [_MOUSE] = LAYOUT_planck_grid(
-        XXXXXXX, XXXXXXX, KC_Q,    KC_W,    KC_E,   XXXXXXX,  XXXXXXX, XXXXXXX, KC_WH_D, KC_MS_U, KC_WH_U, XXXXXXX,
-        KC_LSFT, KC_LCTL, KC_A,    KC_S,    KC_D,   XXXXXXX,  XXXXXXX, KC_WH_L, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_R,
-        XXXXXXX, XXXXXXX, KC_1,    KC_2,    KC_3,   XXXXXXX,  XXXXXXX, XXXXXXX, MOUSE,   XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN2, KC_SPC, _______,  _______, KC_BTN3, KC_BTN1, XXXXXXX, XXXXXXX, XXXXXXX
-    ),
-
-    [_SEL] = LAYOUT_planck_grid(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
-        __zzz__, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, __zzz__, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+    [_FUN] = LAYOUT_planck_grid(
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______, _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,
+        KC_F11,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,  _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_F12,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, _______, ___z___, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, RESET,   _______, _______
     ),
 
     [_NOR] = LAYOUT_planck_grid(
-        _______, _______, EUR_AE,  _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, EUR_OE,  _______,
-        EUR_AA,  _______, _______, _______, _______, KC_TAB,  _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______,
-        __zzz__, KC_DEL,  _______, KC_ENT,  _______, LANG,    LANG,    _______, KC_SPC,  _______, KC_INS,  _______
+        XXXXXXX, XXXXXXX, EUR_AE,  XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, EUR_OE,  XXXXXXX,
+        EUR_AA,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, ___z___, XXXXXXX, _______, _______, XXXXXXX, ___z___, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, _______, XXXXXXX, KC_LSFT, XXXXXXX, _______, _______, XXXXXXX, KC_RSFT, XXXXXXX, _______, _______
     ),
 };
+
 
 void keyboard_post_init_user(void) {
   rgb_matrix_disable();
@@ -121,27 +135,20 @@ void set_led_levels(int left, int right) {
     planck_ez_right_led_level(right);
 }
 
-bool is_press(keyrecord_t *record) {
-    return record->event.pressed;
-}
-
-bool is_release(keyrecord_t *record) {
-    return !record->event.pressed;
-}
-
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _SYM:
         if (layer_state_is(_LSFT)) {
-            set_led_levels(0, 32);
+            set_led_levels(0, 16);
         } else if (layer_state_is(_RSFT)) {
-            set_led_levels(32, 0);
+            set_led_levels(16, 0);
         }
 
         break;
 
-    case _MOUSE:
-        set_led_levels(32, 32);
+    case _FUN:
+        set_led_levels(16, 16);
+
         break;
 
     default:
@@ -157,58 +164,48 @@ bool sym_bspc = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case XK_SYM:
-        if (is_release(record))  {
-            if (sym_bspc) {
-                unregister_code(KC_BSPC);
-                sym_bspc = false;
-            }
+        if (layer_state_is(_SYM)) {
+            if (record->event.pressed) {
+              // sym_hold = true;
 
-            sym_hold = false;
-        } else if (layer_state_is(_SYM)) {
-            if (layer_state_is(_LSFT)) {
-                register_code(KC_BSPC);
-                sym_bspc = true;
-            } else if (layer_state_is(_RSFT)) {
-                tap_code(KC_TAB);
+                if (layer_state_is(_LSFT)) {
+                    register_code(KC_BSPC);
+                    sym_bspc = true;
+                } else if (layer_state_is(_RSFT)) {
+                    tap_code(KC_ESC);
+                }
+            } else {
+                if (!layer_state_is(_LSFT) && !layer_state_is(_RSFT)) {
+                  layer_off(_SYM);
+                  break;
+                }
+
+                sym_hold = false;
+
+                if (sym_bspc) {
+                    sym_bspc = false;
+                    unregister_code(KC_BSPC);
+                }
             }
         } else {
-            layer_invert(_SYM);
-            sym_hold = true;
+            if (record->event.pressed) {
+                sym_hold = true;
+                layer_on(_SYM);
+            }
         }
 
         break;
 
-    case GUI_ESC:
-    case TD_ESC:
-        if (is_release(record) && layer_state_is(_SYM)) {
-            layer_invert(_SYM);
-            return true;
-        }
-
-        break;
-
-    case LT_ENT1:
-    case LT_SPC1:
-        if (is_release(record) && layer_state_is(_SYM)) {
-            layer_move(_BASE1);
-        }
-
-        break;
-
-    case XK_SEL:
-        if (is_press(record)) {
-            layer_move(_SEL);
-            register_code(KC_LGUI);
-            tap_code(KC_GRV);
-        }
-
-        break;
-
-    case FUN_DEL:
-    case FUN_INS:
-        if (is_release(record) && layer_state_is(_SEL)) {
-            layer_off(_SEL);
-            unregister_code(KC_LGUI);
+    case ENT_SFT:
+    case SPC_SFT:
+        if (!record->event.pressed) {
+            if (layer_state_is(_SYM)) {
+              if (sym_hold) {
+                sym_hold = false;
+              } else {
+                layer_off(_SYM);
+              }
+            }
         }
 
         break;
@@ -219,13 +216,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+    case ENT_SFT:
+    case SPC_SFT:
+        break;
+
     case XK_SYM:
         break;
 
     default:
         if (sym_hold) {
-            layer_invert(_SYM);
             sym_hold = false;
+            layer_off(_SYM);
         }
     }
 }
