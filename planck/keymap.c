@@ -16,6 +16,9 @@ enum keycodes {
 
 #define ___z___ _______
 
+#define CTL_COM CTL_T(KC_COMM)
+#define CTL_DOT CTL_T(KC_DOT)
+
 #define SYM_F LT(_SYM, KC_F)
 #define SYM_J LT(_SYM, KC_J)
 
@@ -66,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |  ,     s     d     f     g                bsp    j     k     l     .  |
     |  ;     S     D     F     G                       J     K     L     :  |
-    |                   sym                           sym                   |
+    | ctl               sym                           sym               ctl |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |  a     x     c     v     b                 n     m     p     q     y  |
     |  A     X     C     V     B                 N     M     P     Q     Y  |
@@ -79,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_BASE] = LAYOUT_planck_grid(
         _______, KC_W,    KC_E,    KC_R,    KC_T,    _______, _______, KC_H,    KC_U,    KC_I,    KC_O,    _______,
-        KC_COMM, KC_S,    KC_D,    SYM_F,   KC_G,    _______, _______, KC_BSPC, SYM_J,   KC_K,    KC_L,    KC_DOT,
+        CTL_COM, KC_S,    KC_D,    SYM_F,   KC_G,    _______, _______, KC_BSPC, SYM_J,   KC_K,    KC_L,    CTL_DOT,
         KC_A,    KC_X,    KC_C,    NOR_V,   KC_B,    _______, _______, KC_N,    NOR_M,   KC_P,    KC_Q,    KC_Y,
         KC_Z,    _______, TAB_FUN, ESC_SFT, BRC_CTL, _______, _______, BRC_ALT, SPC_SFT, INS_GUI, _______, KC_SLSH
     ),
