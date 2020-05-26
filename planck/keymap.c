@@ -66,9 +66,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |  ,     s     d     f     g                bsp    j     k     l     .  |
     |  ;     S     D     F     G                       J     K     L     :  |
+    |                   sym                           sym                   |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |  a     x     c     v     b                 n     m     p     q     y  |
     |  A     X     C     V     B                 N     M     P     Q     Y  |
+    |                   nor                           nor                   |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |  z          tab   esc    [                 ]    spc   ins          /  |
     |  Z          fun   sft   ctl               alt   sft   gui          ?  |
@@ -78,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_planck_grid(
         _______, KC_W,    KC_E,    KC_R,    KC_T,    _______, _______, KC_H,    KC_U,    KC_I,    KC_O,    _______,
         KC_COMM, KC_S,    KC_D,    SYM_F,   KC_G,    _______, _______, KC_BSPC, SYM_J,   KC_K,    KC_L,    KC_DOT,
-        KC_A,    KC_X,    KC_C,    KC_V,    KC_B,    _______, _______, KC_N,    KC_M,    KC_P,    KC_Q,    KC_Y,
+        KC_A,    KC_X,    KC_C,    NOR_V,   KC_B,    _______, _______, KC_N,    NOR_M,   KC_P,    KC_Q,    KC_Y,
         KC_Z,    _______, TAB_FUN, ESC_SFT, BRC_CTL, _______, _______, BRC_ALT, SPC_SFT, INS_GUI, _______, KC_SLSH
     ),
 
@@ -132,8 +134,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NOR] = LAYOUT_planck_grid(
         XXXXXXX, XXXXXXX, EUR_AE,  XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, EUR_OE,  XXXXXXX,
-        EUR_AA,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, ___z___, XXXXXXX, _______, _______, XXXXXXX, ___z___, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        EUR_AA,  XXXXXXX, XXXXXXX, ___z___, XXXXXXX, _______, _______, XXXXXXX, ___z___, XXXXXXX, XXXXXXX, XXXXXXX,
         _______, _______, XXXXXXX, KC_LSFT, XXXXXXX, _______, _______, XXXXXXX, KC_RSFT, XXXXXXX, _______, _______
     ),
 };
