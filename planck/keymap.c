@@ -30,7 +30,6 @@ enum keycodes {
 
 #define SPC_SFT LT(_RSFT, KC_SPC)
 #define LSYM TT(_LSYM)
-#define INS_NOR LT(_NOR, KC_INS)
 #define INS_FUN LT(_FUN, KC_INS)
 #define S_INS S(KC_INS)
 
@@ -170,20 +169,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     /*---------------------------------------------------------------------*\
-    |gui 1 gui 2 gui 3  vol+ vol-               f1    f2    f3    f4    f5  |
+    |                                                                       |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-    | sel  home   pgup  pgdn  end               left  down  up   right      |
+    | sel  home   pgup  pgdn  end               left  down  up   right  sel |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-    |                                           f6    f7    f8    f9    f10 |
+    |gui1  gui2  gui3         f11               f12        gui3  gui2  gui1 |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----'
-    |                         rst                     f11   f12             |
+    |                         rst               rst                         |
     \*---------------------------------------------------------------------*/
 
     [_FUN] = LAYOUT_planck_grid(
-        GUI_1,   GUI_2,   GUI_3,   KC_VOLU, KC_VOLD, ___x___, ___x___, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,
-        SELECT,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,  ___x___, ___x___, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ___x___, ___x___, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,
-        ___x___, ___x___, ___z___, XXXXXXX, RESET,   ___x___, ___x___, XXXXXXX, KC_F11,  KC_F12,  ___x___, ___x___
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ___x___, ___x___, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        SELECT,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,  ___x___, ___x___, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, SELECT,
+        GUI_1,   GUI_2,   GUI_3,   XXXXXXX, KC_F11,  ___x___, ___x___, KC_F12,  XXXXXXX, GUI_3,   GUI_2,   GUI_1,
+        ___x___, ___x___, ___z___, XXXXXXX, RESET,   ___x___, ___x___, RESET,   XXXXXXX, ___z___, ___x___, ___x___
     ),
 };
 
@@ -241,6 +240,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
 
     case ESC_FUN:
+    case INS_FUN:
         if (!record->event.pressed) {
             if (select) {
                 unregister_code(KC_LGUI);
