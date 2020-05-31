@@ -133,21 +133,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |  Z     X     C     V     B                 N     M     <     >     ?  |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-    |             esc   sym  s-tab              del   sym  s-ins            |
+    |             esc   sym  s-tab              bsp   sym  s-ins            |
     \*---------------------------------------------------------------------*/
 
     [_LSFT] = LAYOUT_planck_grid(
         S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), ___x___, ___x___, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
         S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), ___x___, ___x___, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_DQUO,
         S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), ___x___, ___x___, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
-        ___x___, ___x___, KC_ESC,  ___z___, S_TAB,   ___x___, ___x___, KC_DEL,  LSYM,    S_INS,   ___x___, ___x___
+        ___x___, ___x___, KC_ESC,  ___z___, S_TAB,   ___x___, ___x___, KC_BSPC, LSYM,    S_INS,   ___x___, ___x___
     ),
 
     [_RSFT] = LAYOUT_planck_grid(
         S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), ___x___, ___x___, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
         S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), ___x___, ___x___, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_DQUO,
         S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), ___x___, ___x___, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
-        ___x___, ___x___, KC_ESC,  RSYM,    S_TAB,   ___x___, ___x___, KC_DEL,  ___z___, S_INS,   ___x___, ___x___
+        ___x___, ___x___, KC_ESC,  RSYM,    S_TAB,   ___x___, ___x___, KC_BSPC, ___z___, S_INS,   ___x___, ___x___
     ),
 
     /*---------------------------------------------------------------------*\
@@ -181,14 +181,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |gui1  gui2  gui3         f11               f12        gui3  gui2  gui1 |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----'
-    |                         rst               rst                         |
+    |                         rst               del                         |
     \*---------------------------------------------------------------------*/
 
     [_FUN] = LAYOUT_planck_grid(
         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   ___x___, ___x___, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,
         SELECT,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,  ___x___, ___x___, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, SELECT,
         GUI_1,   GUI_2,   GUI_3,   XXXXXXX, KC_F11,  ___x___, ___x___, KC_F12,  XXXXXXX, GUI_3,   GUI_2,   GUI_1,
-        ___x___, ___x___, ___z___, XXXXXXX, RESET,   ___x___, ___x___, RESET,   XXXXXXX, ___z___, ___x___, ___x___
+        ___x___, ___x___, ___z___, XXXXXXX, RESET,   ___x___, ___x___, KC_DEL,  XXXXXXX, ___z___, ___x___, ___x___
     ),
 };
 
