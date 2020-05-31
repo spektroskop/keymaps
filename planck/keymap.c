@@ -39,8 +39,10 @@ enum keycodes {
 
 enum combos {
     RESET_COMBO,
+
     AE_COMBO, OE_COMBO, AA_COMBO,
     SAE_COMBO, SOE_COMBO, SAA_COMBO,
+
     GRV_COMBO, TILD_COMBO,
     MINS_COMBO, UNDS_COMBO,
     EQL_COMBO, PLUS_COMBO,
@@ -49,12 +51,14 @@ enum combos {
 };
 
 const uint16_t PROGMEM reset_combo[] = {KC_Q, KC_P, COMBO_END};
+
 const uint16_t PROGMEM ae_combo[] = {KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM oe_combo[] = {KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM aa_combo[] = {KC_A, KC_S, COMBO_END};
 const uint16_t PROGMEM sae_combo[] = {S(KC_E), S(KC_R), COMBO_END};
 const uint16_t PROGMEM soe_combo[] = {S(KC_W), S(KC_E), COMBO_END};
 const uint16_t PROGMEM saa_combo[] = {S(KC_A), S(KC_S), COMBO_END};
+
 const uint16_t PROGMEM grv_combo[] = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM tild_combo[] = {S(KC_Q), S(KC_W), COMBO_END};
 const uint16_t PROGMEM mins_combo[] = {KC_U, KC_I, COMBO_END};
@@ -68,12 +72,14 @@ const uint16_t PROGMEM coln_combo[] = {S(KC_L), S(KC_QUOT), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [RESET_COMBO] = COMBO_ACTION(reset_combo),
+
   [AE_COMBO] = COMBO(ae_combo, ALGR(KC_Q)),
   [OE_COMBO] = COMBO(oe_combo, ALGR(KC_L)),
   [AA_COMBO] = COMBO(aa_combo, ALGR(KC_W)),
   [SAE_COMBO] = COMBO(sae_combo, S(ALGR(KC_Q))),
   [SOE_COMBO] = COMBO(soe_combo, S(ALGR(KC_L))),
   [SAA_COMBO] = COMBO(saa_combo, S(ALGR(KC_W))),
+
   [GRV_COMBO] = COMBO(grv_combo, KC_GRV),
   [TILD_COMBO] = COMBO(tild_combo, KC_TILD),
   [MINS_COMBO] = COMBO(mins_combo, KC_MINS),
@@ -134,14 +140,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), ___x___, ___x___, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
         S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), ___x___, ___x___, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_DQUO,
         S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), ___x___, ___x___, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
-        ___x___, ___x___, _______, ___z___, S_TAB,   ___x___, ___x___, KC_DEL, LSYM,    S_INS,   ___x___, ___x___
+        ___x___, ___x___, KC_ESC,  ___z___, S_TAB,   ___x___, ___x___, KC_DEL,  LSYM,    S_INS,   ___x___, ___x___
     ),
 
     [_RSFT] = LAYOUT_planck_grid(
         S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), ___x___, ___x___, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P),
         S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), ___x___, ___x___, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_DQUO,
         S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), ___x___, ___x___, S(KC_N), S(KC_M), KC_LT,   KC_GT,   KC_QUES,
-        ___x___, ___x___, _______, RSYM,    S_TAB,   ___x___, ___x___, KC_DEL,  ___z___, S_INS,   ___x___, ___x___
+        ___x___, ___x___, KC_ESC,  RSYM,    S_TAB,   ___x___, ___x___, KC_DEL,  ___z___, S_INS,   ___x___, ___x___
     ),
 
     /*---------------------------------------------------------------------*\
@@ -158,14 +164,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, ___x___, ___x___, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    ___x___, ___x___, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         XXXXXXX, XXXXXXX, XXXXXXX, KC_RCBR, KC_RBRC, ___x___, ___x___, KC_LBRC, KC_LCBR, KC_COMM, KC_DOT, XXXXXXX,
-        ___x___, ___x___, _______, ___z___, KC_TAB,  ___x___, ___x___, KC_BSPC, ___z___, _______, ___x___, ___x___
+        ___x___, ___x___, KC_ESC,  ___z___, KC_TAB,  ___x___, ___x___, KC_BSPC, ___z___, KC_INS,  ___x___, ___x___
     ),
 
     [_RSYM] = LAYOUT_planck_grid(
         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, ___x___, ___x___, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    ___x___, ___x___, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         XXXXXXX, XXXXXXX, XXXXXXX, KC_RCBR, KC_RBRC, ___x___, ___x___, KC_LBRC, KC_LCBR, KC_COMM, KC_DOT, XXXXXXX,
-        ___x___, ___x___, _______, ___z___, KC_TAB,  ___x___, ___x___, KC_BSPC, ___z___, _______, ___x___, ___x___
+        ___x___, ___x___, KC_ESC,  ___z___, KC_TAB,  ___x___, ___x___, KC_BSPC, ___z___, KC_INS,  ___x___, ___x___
     ),
 
     /*---------------------------------------------------------------------*\
