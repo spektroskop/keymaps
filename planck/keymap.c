@@ -198,11 +198,11 @@ void set_led_levels(int left, int right) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _LSYM:
-        set_led_levels(16, 0);
+        set_led_levels(0, 16);
         break;
 
     case _RSYM:
-        set_led_levels(0, 16);
+        set_led_levels(16, 0);
         break;
 
     case _FUN:
