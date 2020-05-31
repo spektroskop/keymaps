@@ -155,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |  1     2     3     4     5                 6     7     8     9     0  |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-    |                    }     ]                 [     {     ,     .        |
+    |                    [     ]                 {     }     ,     .        |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |                                                                       |
     \*---------------------------------------------------------------------*/
@@ -163,14 +163,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LSYM] = LAYOUT_planck_grid(
         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, ___x___, ___x___, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    ___x___, ___x___, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-        XXXXXXX, XXXXXXX, XXXXXXX, KC_RCBR, KC_RBRC, ___x___, ___x___, KC_LBRC, KC_LCBR, KC_COMM, KC_DOT, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, ___x___, ___x___, KC_LCBR, KC_RCBR, KC_COMM, KC_DOT, XXXXXXX,
         ___x___, ___x___, KC_ESC,  ___z___, KC_TAB,  ___x___, ___x___, KC_BSPC, ___z___, KC_INS,  ___x___, ___x___
     ),
 
     [_RSYM] = LAYOUT_planck_grid(
         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, ___x___, ___x___, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    ___x___, ___x___, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-        XXXXXXX, XXXXXXX, XXXXXXX, KC_RCBR, KC_RBRC, ___x___, ___x___, KC_LBRC, KC_LCBR, KC_COMM, KC_DOT, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, ___x___, ___x___, KC_LCBR, KC_RCBR, KC_COMM, KC_DOT, XXXXXXX,
         ___x___, ___x___, KC_ESC,  ___z___, KC_TAB,  ___x___, ___x___, KC_BSPC, ___z___, KC_INS,  ___x___, ___x___
     ),
 
