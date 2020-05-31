@@ -216,16 +216,22 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
-bool select = false;
+bool select_hold = false;
+bool sym_hold = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+    case RSYM:
+    case LSYM:
+        sym_hold = record->event.pressed;
+        break;
+
     case ENT_SFT:
     case SPC_SFT:
         if (!record->event.pressed) {
-            if (layer_state_is(_LSYM)) {
+            if (!sym_hold && layer_state_is(_LSYM)) {
                 layer_off(_LSYM);
-            } else if (layer_state_is(_RSYM)) {
+            } else if (!sym_hold && layer_state_is(_RSYM)) {
                 layer_off(_RSYM);
             }
         }
@@ -233,16 +239,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case SELECT:
         if (record->event.pressed) {
-            select = true;
+            select_hold = true;
             register_code(KC_LGUI);
             tap_code(KC_GRV);
         }
         break;
 
+    case TAB_FUN:
     case ESC_FUN:
     case INS_FUN:
         if (!record->event.pressed) {
-            if (select) {
+            if (select_hold) {
                 unregister_code(KC_LGUI);
             }
         }
