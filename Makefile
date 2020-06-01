@@ -36,7 +36,6 @@ update:
 	git submodule foreach git pull origin master
 
 $(eval $(call make_keyboard,planck,planck/ez))
-$(eval $(call make_keyboard,preonic,preonic/rev3))
 
 $(PWD)/qmk_firmware/users/$(USERNAME):
 	ln -s $(PWD)/user $(PWD)/qmk_firmware/users/$(USERNAME)
