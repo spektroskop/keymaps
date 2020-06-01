@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     | sel  home   pgup  pgdn  end               left  down  up   right  sel |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-    |gui1  gui2  gui3         f11               f12        gui3  gui2  gui1 |
+    |gui1  gui2  gui3         f11               f12        gui1  gui2  gui3 |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----'
     |                                           del                         |
     \*---------------------------------------------------------------------*/
@@ -139,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_FUN] = LAYOUT_planck_grid(
         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   ___x___, ___x___, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,
         SELECT,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,  ___x___, ___x___, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, SELECT,
-        GUI_1,   GUI_2,   GUI_3,   XXXXXXX, KC_F11,  ___x___, ___x___, KC_F12,  XXXXXXX, GUI_3,   GUI_2,   GUI_1,
+        GUI_1,   GUI_2,   GUI_3,   XXXXXXX, KC_F11,  ___x___, ___x___, KC_F12,  XXXXXXX, GUI_1,   GUI_2,   GUI_3,
         ___x___, ___x___, ___z___, XXXXXXX, XXXXXXX, ___x___, ___x___, KC_DEL,  XXXXXXX, ___z___, ___x___, ___x___
     ),
 };
