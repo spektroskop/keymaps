@@ -62,6 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     |  q  `  w  ø  e  æ  r     t                 y     u  -  i  =  o  \  p  |  qp = reset
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |  a  å  s     d     f tab g                 h bsp j     k     l  ;  '  |
+    |       ctl   alt   gui                           gui   alt   ctl       | TODO: https://github.com/qmk/qmk_firmware/pull/8591
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |  z     x     c     v     b                 n     m     ,     .     /  |
     |       ctl   alt   gui                           gui   alt   ctl       |
