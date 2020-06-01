@@ -37,65 +37,18 @@ enum keycodes {
 #define GUI_2 LGUI(KC_2)
 #define GUI_3 LGUI(KC_3)
 
-enum combos {
-    RESET_COMBO,
+#include "combos.h"
 
-    AE_COMBO, OE_COMBO, AA_COMBO,
-    SAE_COMBO, SOE_COMBO, SAA_COMBO,
-
-    GRV_COMBO, TILD_COMBO,
-    MINS_COMBO, UNDS_COMBO,
-    EQL_COMBO, PLUS_COMBO,
-    BSLS_COMBO, PIPE_COMBO,
-    SCLN_COMBO, COLN_COMBO,
-};
-
-const uint16_t PROGMEM reset_combo[] = {KC_Q, KC_P, COMBO_END};
-
-const uint16_t PROGMEM ae_combo[] = {KC_E, KC_R, COMBO_END};
-const uint16_t PROGMEM oe_combo[] = {KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM aa_combo[] = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM sae_combo[] = {S(KC_E), S(KC_R), COMBO_END};
-const uint16_t PROGMEM soe_combo[] = {S(KC_W), S(KC_E), COMBO_END};
-const uint16_t PROGMEM saa_combo[] = {S(KC_A), S(KC_S), COMBO_END};
-
-const uint16_t PROGMEM grv_combo[] = {KC_Q, KC_W, COMBO_END};
-const uint16_t PROGMEM tild_combo[] = {S(KC_Q), S(KC_W), COMBO_END};
-const uint16_t PROGMEM mins_combo[] = {KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM unds_combo[] = {S(KC_U), S(KC_I), COMBO_END};
-const uint16_t PROGMEM eql_combo[] = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM plus_combo[] = {S(KC_I), S(KC_O), COMBO_END};
-const uint16_t PROGMEM bsls_combo[] = {KC_O, KC_P, COMBO_END};
-const uint16_t PROGMEM pipe_combo[] = {S(KC_O), S(KC_P), COMBO_END};
-const uint16_t PROGMEM scln_combo[] = {KC_L, KC_QUOT, COMBO_END};
-const uint16_t PROGMEM coln_combo[] = {S(KC_L), S(KC_QUOT), COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-  [RESET_COMBO] = COMBO_ACTION(reset_combo),
-
-  [AE_COMBO] = COMBO(ae_combo, ALGR(KC_Q)),
-  [OE_COMBO] = COMBO(oe_combo, ALGR(KC_L)),
-  [AA_COMBO] = COMBO(aa_combo, ALGR(KC_W)),
-  [SAE_COMBO] = COMBO(sae_combo, S(ALGR(KC_Q))),
-  [SOE_COMBO] = COMBO(soe_combo, S(ALGR(KC_L))),
-  [SAA_COMBO] = COMBO(saa_combo, S(ALGR(KC_W))),
-
-  [GRV_COMBO] = COMBO(grv_combo, KC_GRV),
-  [TILD_COMBO] = COMBO(tild_combo, KC_TILD),
-  [MINS_COMBO] = COMBO(mins_combo, KC_MINS),
-  [UNDS_COMBO] = COMBO(unds_combo, KC_UNDS),
-  [EQL_COMBO] = COMBO(eql_combo, KC_EQL),
-  [PLUS_COMBO] = COMBO(plus_combo, KC_PLUS),
-  [BSLS_COMBO] = COMBO(bsls_combo, KC_BSLS),
-  [PIPE_COMBO] = COMBO(pipe_combo, KC_PIPE),
-  [SCLN_COMBO] = COMBO(scln_combo, KC_SCLN),
-  [COLN_COMBO] = COMBO(coln_combo, KC_COLN),
-};
+void set_led_levels(int left, int right) {
+    planck_ez_left_led_level(left);
+    planck_ez_right_led_level(right);
+}
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
   switch(combo_index) {
     case RESET_COMBO:
       if (pressed) {
+        set_led_levels(16, 16);
         reset_keyboard();
       }
 
@@ -107,10 +60,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /*---------------------------------------------------------------------*\
     |  q  `  w  ø  e  æ  r     t                 y     u  -  i  =  o  \  p  |  qp = reset
-    |                                                                       |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-    |  a  å  s     d     f     g                 h     j     k     l  ;  '  |
-    |                                                                       |
+    |  a  å  s     d     f tab g                 h bsp j     k     l  ;  '  |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |  z     x     c     v     b                 n     m     ,     .     /  |
     |       ctl   alt   gui                           gui   alt   ctl       |
@@ -181,24 +132,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
     |gui1  gui2  gui3         f11               f12        gui3  gui2  gui1 |
     |-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----'
-    |                         rst               del                         |
+    |                                           del                         |
     \*---------------------------------------------------------------------*/
 
     [_FUN] = LAYOUT_planck_grid(
         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   ___x___, ___x___, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,
         SELECT,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,  ___x___, ___x___, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, SELECT,
         GUI_1,   GUI_2,   GUI_3,   XXXXXXX, KC_F11,  ___x___, ___x___, KC_F12,  XXXXXXX, GUI_3,   GUI_2,   GUI_1,
-        ___x___, ___x___, ___z___, XXXXXXX, RESET,   ___x___, ___x___, KC_DEL,  XXXXXXX, ___z___, ___x___, ___x___
+        ___x___, ___x___, ___z___, XXXXXXX, XXXXXXX, ___x___, ___x___, KC_DEL,  XXXXXXX, ___z___, ___x___, ___x___
     ),
 };
 
 void keyboard_post_init_user(void) {
-  rgb_matrix_disable();
-}
-
-void set_led_levels(int left, int right) {
-    planck_ez_left_led_level(left);
-    planck_ez_right_led_level(right);
+    rgb_matrix_disable();
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -234,10 +180,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case ENT_SFT:
     case SPC_SFT:
-        if (!record->event.pressed) {
-            if (!sym_hold && layer_state_is(_LSYM)) {
+        if (!sym_hold && !record->event.pressed) {
+            if (layer_state_is(_LSYM)) {
                 layer_off(_LSYM);
-            } else if (!sym_hold && layer_state_is(_RSYM)) {
+            } else if (layer_state_is(_RSYM)) {
                 layer_off(_RSYM);
             }
         }
@@ -251,7 +197,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
 
-    case TAB_FUN:
     case ESC_FUN:
     case INS_FUN:
         if (!record->event.pressed) {
