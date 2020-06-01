@@ -34,6 +34,8 @@ setup:
 
 update:
 	git submodule foreach git pull origin master
+	git submodule foreach make git-submodule
+
 
 $(eval $(call make_keyboard,planck,planck/ez))
 
