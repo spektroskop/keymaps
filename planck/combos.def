@@ -1,5 +1,3 @@
-combo_action(RESET_COMBO, KC_NO, KC_Q, KC_P)
-
 combo(TAB_COMBO, KC_TAB, KC_F, KC_G)
 combo(BSPC_COMBO, KC_BSPC, KC_H, KC_J)
 

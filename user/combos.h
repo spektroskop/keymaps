@@ -12,6 +12,7 @@
 #undef combo_action
 #define combo_action __combo_enum
 enum __combos__ {
+    #include "user_combos.def"
     #include "combos.def"
 };
 
@@ -19,6 +20,7 @@ enum __combos__ {
 #define combo __combo_data
 #undef combo_action
 #define combo_action __combo_data
+#include "user_combos.def"
 #include "combos.def"
 
 #undef combo
@@ -27,6 +29,7 @@ enum __combos__ {
 #define combo_action __combo_action
 
 combo_t key_combos[] = {
+    #include "user_combos.def"
     #include "combos.def"
 };
 
