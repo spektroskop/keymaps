@@ -1,0 +1,29 @@
+combo_action(RESET_COMBO, KC_NO, KC_Q, KC_P)
+
+combo(AE_COMBO, ALGR(KC_Q), KC_E, KC_R)
+combo(OE_COMBO, ALGR(KC_L), KC_W, KC_E)
+combo(AA_COMBO, ALGR(KC_W), KC_A, KC_S)
+
+combo(SFT_AE_COMBO, S(ALGR(KC_Q)), S(KC_E), S(KC_R))
+combo(SFT_OE_COMBO, S(ALGR(KC_L)), S(KC_W), S(KC_E))
+combo(SFT_AA_COMBO, S(ALGR(KC_W)), S(KC_A), S(KC_S))
+
+combo(GRV_COMBO, KC_GRV, KC_Q, KC_W)
+combo(MINS_COMBO, KC_MINS, KC_U, KC_I)
+combo(EQL_COMBO, KC_EQL, KC_I, KC_O)
+combo(BSLS_COMBO, KC_BSLS, KC_O, KC_P)
+
+combo(TILD_COMBO, KC_TILD, S(KC_Q), S(KC_W))
+combo(UNDS_COMBO, KC_UNDS, S(KC_U), S(KC_I))
+combo(PLUS_COMBO, KC_PLUS, S(KC_I), S(KC_O))
+combo(PIPE_COMBO, KC_PIPE, S(KC_O), S(KC_P))
+
+combo(LPRN_COMBO, KC_LPRN, KC_J, KC_K)
+combo(RPRN_COMBO, KC_RPRN, KC_K, KC_L)
+combo(LBRC_COMBO, KC_LBRC, S(KC_J), S(KC_K))
+combo(RBRC_COMBO, KC_RBRC, S(KC_K), S(KC_L))
+combo(LCBR_COMBO, KC_LCBR, KC_7, KC_8)
+combo(RCBR_COMBO, KC_RCBR, KC_8, KC_9)
+
+combo(SCLN_COMBO, KC_SCLN, KC_L, KC_QUOT)
+combo(COLN_COMBO, KC_COLN, S(KC_L), S(KC_QUOT))

@@ -1,27 +1,11 @@
+combo(ESC_COMBO, KC_ESC, KC_D, KC_F)
 combo(TAB_COMBO, KC_TAB, KC_F, KC_G)
 combo(BSPC_COMBO, KC_BSPC, KC_H, KC_J)
+
+combo(SFT_ESC_COMBO, KC_ESC, S(KC_D), S(KC_F))
 combo(SFT_TAB_COMBO, S(KC_TAB), S(KC_F), S(KC_G))
 combo(SFT_BSPC_COMBO, KC_BSPC, S(KC_H), S(KC_J))
+
+combo(SYM_ESC_COMBO, KC_ESC, KC_3, KC_4)
 combo(SYM_TAB_COMBO, KC_TAB, KC_4, KC_5)
 combo(SYM_BSPC_COMBO, KC_BSPC, KC_6, KC_7)
-
-combo(AE_COMBO, ALGR(KC_Q), KC_E, KC_R)
-combo(OE_COMBO, ALGR(KC_L), KC_W, KC_E)
-combo(AA_COMBO, ALGR(KC_W), KC_A, KC_S)
-
-combo(SFT_AE_COMBO, S(ALGR(KC_Q)), S(KC_E), S(KC_R))
-combo(SFT_OE_COMBO, S(ALGR(KC_L)), S(KC_W), S(KC_E))
-combo(SFT_AA_COMBO, S(ALGR(KC_W)), S(KC_A), S(KC_S))
-
-combo(GRV_COMBO, KC_GRV, KC_Q, KC_W)
-combo(MINS_COMBO, KC_MINS, KC_U, KC_I)
-combo(EQL_COMBO, KC_EQL, KC_I, KC_O)
-combo(BSLS_COMBO, KC_BSLS, KC_O, KC_P)
-
-combo(TILD_COMBO, KC_TILD, S(KC_Q), S(KC_W))
-combo(UNDS_COMBO, KC_UNDS, S(KC_U), S(KC_I))
-combo(PLUS_COMBO, KC_PLUS, S(KC_I), S(KC_O))
-combo(PIPE_COMBO, KC_PIPE, S(KC_O), S(KC_P))
-
-combo(SCLN_COMBO, KC_SCLN, KC_L, KC_QUOT)
-combo(COLN_COMBO, KC_COLN, S(KC_L), S(KC_QUOT))
