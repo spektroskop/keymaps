@@ -4,24 +4,21 @@ QMK_HOME := $(PWD)/qmk_firmware
 
 all: compile
 
-define make_keyboard
-$(PWD)/qmk_firmware/keyboards/$(1)/keymaps/spektroskop:
-	ln -s $(PWD)/$(1) $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/spektroskop
+define make-keyboard
+$(PWD)/qmk_firmware/keyboards/$(1)/keymaps/spektroskop-$(3):
+	ln -s $(PWD)/maps/$(3) $(PWD)/qmk_firmware/keyboards/planck/keymaps/spektroskop-$(3)
 
-.PHONY: compile--$(1)
-compile--$(1): $(PWD)/qmk_firmware/users/spektroskop $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/spektroskop
-	qmk compile -kb $(2) -km spektroskop
+compile-$(3): $(PWD)/qmk_firmware/users/spektroskop $(PWD)/qmk_firmware/keyboards/planck/keymaps/spektroskop-$(3)
+	qmk compile -kb $(2) -km spektroskop-$(3)
 
-.PHONY: flash--$(1)
-flash--$(1): $(PWD)/qmk_firmware/users/spektroskop $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/spektroskop
-	qmk flash -kb $(2) -km spektroskop
+flash-$(3): $(PWD)/qmk_firmware/users/spektroskop $(PWD)/qmk_firmware/keyboards/planck/keymaps/spektroskop-$(3)
+	qmk flash -kb $(2) -km spektroskop-$(3)
 
-.PHONY: unlink--$(1)
-unlink--$(1):
-	rm -f $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/spektroskop
+unlink-$(3):
+	rm -f $(PWD)/qmk_firmware/keyboards/$(1)/keymaps/spektroskop-$(3)
 
-compile_targets += compile--$(1)
-unlink_targets += unlink--$(1)
+compile_targets += compile-$(3)
+unlink_targets += unlink-$(3)
 endef
 
 init:
@@ -35,14 +32,14 @@ update:
 	git submodule foreach git pull origin master
 	git submodule foreach make git-submodule
 
-$(eval $(call make_keyboard,planck,planck/ez))
-
 $(PWD)/qmk_firmware/users/spektroskop:
 	ln -s $(PWD)/user $(PWD)/qmk_firmware/users/spektroskop
 
-unlink_user:
+unlink-user:
 	rm -f $(PWD)/qmk_firmware/users/spektroskop
+
+$(eval $(call make-keyboard,planck,planck/ez,planck-mit))
 
 compile: $(compile_targets)
 
-unlink: unlink_user $(unlink_targets)
+unlink: unlink-user $(unlink_targets)
