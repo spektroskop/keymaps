@@ -38,7 +38,7 @@ $(QMK_HOME)/users/spektroskop:
 unlink-user:
 	rm -f $(QMK_HOME)/users/spektroskop
 
-$(eval $(call make-keyboard,planck,planck/ez,planck-36-gap))
+$(eval $(call make-keyboard,planck,planck/ez,planck-split36))
 
 compile: $(compile_targets)
 
