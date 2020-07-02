@@ -6,12 +6,12 @@ QMK_HOME?=$(PWD)/qmk_firmware
 
 define make-keyboard
 $(QMK_HOME)/keyboards/$(1)/keymaps/spektroskop-$(3):
-	ln -s $(PWD)/maps/$(3) $(QMK_HOME)/keyboards/planck/keymaps/spektroskop-$(3)
+	ln -s $(PWD)/maps/$(3) $(QMK_HOME)/keyboards/$(1)/keymaps/spektroskop-$(3)
 
-compile-$(3): $(QMK_HOME)/users/spektroskop $(QMK_HOME)/keyboards/planck/keymaps/spektroskop-$(3)
+compile-$(3): $(QMK_HOME)/users/spektroskop $(QMK_HOME)/keyboards/$(1)/keymaps/spektroskop-$(3)
 	qmk compile -kb $(2) -km spektroskop-$(3)
 
-flash-$(3): $(QMK_HOME)/users/spektroskop $(QMK_HOME)/keyboards/planck/keymaps/spektroskop-$(3)
+flash-$(3): $(QMK_HOME)/users/spektroskop $(QMK_HOME)/keyboards/$(1)/keymaps/spektroskop-$(3)
 	qmk flash -kb $(2) -km spektroskop-$(3)
 
 unlink-$(3):
@@ -26,7 +26,7 @@ init:
 	git submodule update
 
 setup:
-	qmk setup
+	qmk setup --yes -H $(QMK_HOME)
 
 update:
 	git submodule foreach git pull origin master
@@ -38,7 +38,8 @@ $(QMK_HOME)/users/spektroskop:
 unlink-user:
 	rm -f $(QMK_HOME)/users/spektroskop
 
-$(eval $(call make-keyboard,planck,planck/ez,planck-split36))
+$(eval $(call make-keyboard,planck,planck/ez,planck-mit))
+$(eval $(call make-keyboard,gboards/gergoplex,gboards/gergoplex,gergoplex))
 
 compile: $(compile_targets)
 
