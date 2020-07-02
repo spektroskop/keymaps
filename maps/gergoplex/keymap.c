@@ -78,20 +78,6 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
 #define RSYM TT(_RSYM)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /*
-    +---------------------------------------+       +---------------------------------------+
-    |   q   `   w   ø   e   æ   r       t   |       |   y       u   -   i   =   o   \   p   |  qp = reset
-    |-------+-------+-------+-------+-------|       |-------+-------+-------+-------+-------|
-    |   a   å   s       d       f       g   |       |   h       j   (   k   )   l   ;   '   |
-    |-------+-------+-------+-------+-------|       |-------+-------+-------+-------+-------|
-    |   z       x       c       v       b   |       |   n       m       ,       .       /   |
-    |  nav                                  |       |                                  nav  |
-    |-------+-------+-------+-------+-------+       |-------+-------+-------+-------+-------|
-                    |  esc     sym     ent  |       | spc     sym      bsp  |
-                    |                  sft  |       | sft                   |
-                    +-----------------------+       +-----------------------+
-    */
-
     [_BASE] = LAYOUT_gergoplex(
         KC_Q,   KC_W,     KC_E,    KC_R,    KC_T,           KC_Y,    KC_U,      KC_I,    KC_O,    KC_P,
         KC_A,   KC_S,     KC_D,    KC_F,    KC_G,           KC_H,    KC_J,      KC_K,    KC_L,    KC_QUOT,
@@ -117,14 +103,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,        KC_CIRC, KC_AMPR, KC_ASTR, KC_LCBR, KC_RCBR,
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,           KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,        XXXXXXX, XXXXXXX, KC_COMM, KC_DOT, XXXXXXX,
-                          KC_ESC,  XXXXXXX, ___z___,        ___z___, XXXXXXX, KC_BSPC
+                          XXXXXXX, XXXXXXX, ___z___,        ___z___, XXXXXXX, XXXXXXX
     ),
 
     [_RSYM] = LAYOUT_gergoplex(
         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,        KC_CIRC, KC_AMPR, KC_ASTR, KC_LCBR, KC_RCBR,
         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,           KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,        XXXXXXX, XXXXXXX, KC_COMM, KC_DOT, XXXXXXX,
-                          KC_ESC,  XXXXXXX, ___z___,        ___z___, XXXXXXX, KC_BSPC
+                          XXXXXXX, XXXXXXX, ___z___,        ___z___, XXXXXXX, XXXXXXX
     ),
 
     [_NAV] = LAYOUT_gergoplex(
