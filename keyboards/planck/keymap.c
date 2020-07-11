@@ -7,28 +7,17 @@ enum keycodes { GUI_TAB = SAFE_RANGE, ALT_TAB, CTL_TAB };
 
 #include "make_combos.h"
 
-#define MO_FUN MO(_FUN)
+#define FUN_SLS LT(_FUN, KC_SLSH)
+#define FUN_Z LT(_FUN, KC_Z)
+#define GUI_1 LGUI(KC_1)
+#define GUI_2 LGUI(KC_2)
+#define GUI_3 LGUI(KC_3)
+#define OS_SYM OSL(_SYM)
 #define S_TAB S(KC_TAB)
 #define SFT_ENT LT(_LSFT, KC_ENT)
 #define SFT_SPC LT(_RSFT, KC_SPC)
 #define TT_LSYM TT(_LSYM)
 #define TT_RSYM TT(_RSYM)
-#define OS_SYM OSL(_SYM)
-
-#define CTL_A LCTL_T(KC_A)
-#define ALT_S LALT_T(KC_S)
-#define GUI_D LGUI_T(KC_D)
-
-#define GUI_K LGUI_T(KC_K)
-#define ALT_L LALT_T(KC_L)
-#define CTL_SCL LCTL_T(KC_SCLN)
-
-#define FUN_Z LT(_FUN, KC_Z)
-#define FUN_SLS LT(_FUN, KC_SLSH)
-
-#define GUI_1 LGUI(KC_1)
-#define GUI_2 LGUI(KC_2)
-#define GUI_3 LGUI(KC_3)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_planck_grid(
@@ -83,8 +72,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-    case CTL_A: case ALT_S: case GUI_D:
-    case GUI_K: case ALT_L: case CTL_SCL:
     case FUN_Z: case FUN_SLS:
     case SFT_ENT: case SFT_SPC:
       return false;
@@ -157,7 +144,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     );
     break;
 
-  case MO_FUN: case FUN_Z: case FUN_SLS:
+  case FUN_Z: case FUN_SLS:
     deactivate_tabs(record);
     break;
 

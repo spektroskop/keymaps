@@ -2,22 +2,21 @@
 #include "spektroskop.h"
 
 enum layers { _BASE, _LSFT, _RSFT, _LSYM, _RSYM, _FUN };
-enum keycodes { SELECT = SAFE_RANGE, GUI_TAB, ALT_TAB, CTL_TAB };
+enum keycodes { GUI_TAB = SAFE_RANGE, ALT_TAB, CTL_TAB };
 
 #define BSP_GUI LGUI_T(KC_BSPC)
 #define ESC_ALT LALT_T(KC_ESC)
-#define S_ENT LSFT(KC_ENT)
-#define SFT_ENT LT(_LSFT, KC_ENT)
-#define SFT_SPC LT(_RSFT, KC_SPC)
-#define FUN_Z LT(_FUN, KC_Z)
 #define FUN_SLS LT(_FUN, KC_SLSH)
-#define TAB_CTL LCTL_T(KC_TAB)
-#define TT_LSYM TT(_LSYM)
-#define TT_RSYM TT(_RSYM)
-
+#define FUN_Z LT(_FUN, KC_Z)
 #define GUI_1 LGUI(KC_1)
 #define GUI_2 LGUI(KC_2)
 #define GUI_3 LGUI(KC_3)
+#define S_ENT LSFT(KC_ENT)
+#define SFT_ENT LT(_LSFT, KC_ENT)
+#define SFT_SPC LT(_RSFT, KC_SPC)
+#define TAB_CTL LCTL_T(KC_TAB)
+#define TT_LSYM TT(_LSYM)
+#define TT_RSYM TT(_RSYM)
 
 #include "make_combos.h"
 
@@ -60,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FUN] = LAYOUT_gergoplex(
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,          KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,
     KC_F11,  KC_HOME, KC_PGUP, KC_PGDN, KC_END,         KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_F12,
-    _______, GUI_1,   GUI_2,   GUI_3,   SELECT,         SELECT,  GUI_TAB, ALT_TAB, CTL_TAB, _______,
+    _______, GUI_1,   GUI_2,   GUI_3,   XXXXXXX,        XXXXXXX, GUI_TAB, ALT_TAB, CTL_TAB, _______,
                       _______, _______, KC_LSFT,        KC_RSFT, _______, _______
   ),
 };
