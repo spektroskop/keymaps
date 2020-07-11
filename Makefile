@@ -6,7 +6,7 @@ QMK_HOME?=$(PWD)/qmk_firmware
 
 define make-keyboard
 $(QMK_HOME)/keyboards/$(1)/keymaps/spektroskop-$(3):
-	ln -s $(PWD)/maps/$(3) $(QMK_HOME)/keyboards/$(1)/keymaps/spektroskop-$(3)
+	ln -sf $(PWD)/keyboards/$(3) $(QMK_HOME)/keyboards/$(1)/keymaps/spektroskop-$(3)
 
 compile-$(3): $(QMK_HOME)/users/spektroskop $(QMK_HOME)/keyboards/$(1)/keymaps/spektroskop-$(3)
 	qmk compile -kb $(2) -km spektroskop-$(3)
