@@ -1,4 +1,8 @@
-#ifdef COMBO_TERM
+#undef TAPPING_FORCE_HOLD
+#define TAPPING_FORCE_HOLD_PER_KEY
+
 #undef COMBO_TERM
-#endif
 #define COMBO_TERM 10
+
+#undef DEBOUNCE
+#define DEBOUNCE 8

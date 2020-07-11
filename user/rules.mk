@@ -1,6 +1,3 @@
-MOUSEKEY_ENABLE = yes
-EXTRAKEY_ENABLE = yes
 COMMAND_ENABLE = no
-NKRO_ENABLE = yes
 COMBO_ENABLE = yes
-# TAP_DANCE_ENABLE = yes
+SRC += spektroskop.c

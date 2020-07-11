@@ -1,14 +1,12 @@
-combo(ENT_COMBO,  KC_ENT,  KC_S, KC_D)
-combo(INS_COMBO,  KC_INS,  KC_D, KC_F)
-combo(TAB_COMBO,  KC_TAB,  KC_F, KC_G)
 combo(BSPC_COMBO, KC_BSPC, KC_H, KC_J)
-
-combo(SFT_ENT_COMBO,  S(KC_ENT), S(KC_S), S(KC_D))
-combo(SFT_INS_COMBO,  S(KC_INS), S(KC_D), S(KC_F))
-combo(SFT_TAB_COMBO,  S(KC_TAB), S(KC_F), S(KC_G))
-combo(SFT_BSPC_COMBO, KC_BSPC,   S(KC_H), S(KC_J))
-
-combo(SYM_ENT_COMBO,  KC_ENT,  KC_2, KC_3)
-combo(SYM_INS_COMBO,  KC_INS,  KC_3, KC_4)
-combo(SYM_TAB_COMBO,  KC_TAB,  KC_4, KC_5)
+combo(SFT_BSPC_COMBO, KC_BSPC, S(KC_H), S(KC_J))
 combo(SYM_BSPC_COMBO, KC_BSPC, KC_6, KC_7)
+
+combo(TAB_COMBO,  KC_TAB,  KC_F, KC_G)
+combo(SFT_TAB_COMBO, S(KC_TAB), S(KC_F), S(KC_G))
+combo(SYM_TAB_COMBO, KC_TAB,  KC_4, KC_5)
+
+combo(SCLN_COMBO, KC_SCLN, KC_L, KC_QUOT)
+combo(COLN_COMBO, KC_COLN, S(KC_L), KC_DQUO)
+
+
