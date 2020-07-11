@@ -2,6 +2,33 @@
 
 #include QMK_KEYBOARD_H
 
+enum layers {
+  _BASE,
+  _LSFT,
+  _RSFT,
+  _SYM,
+  _LSYM,
+  _RSYM,
+  _FUN,
+};
+
+enum keycodes {
+  GUI_TAB = SAFE_RANGE,
+  ALT_TAB,
+  CTL_TAB,
+};
+
+#define FUN_SLS LT(_FUN, KC_SLSH)
+#define FUN_Z LT(_FUN, KC_Z)
+#define GUI_1 LGUI(KC_1)
+#define GUI_2 LGUI(KC_2)
+#define GUI_3 LGUI(KC_3)
+#define S_TAB S(KC_TAB)
+#define SFT_ENT LT(_LSFT, KC_ENT)
+#define SFT_SPC LT(_RSFT, KC_SPC)
+#define TT_LSYM TT(_LSYM)
+#define TT_RSYM TT(_RSYM)
+
 #define LAYOUT_planck_grid_wrapper(...) LAYOUT_planck_grid(__VA_ARGS__)
 #define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
 #define LAYOUT_gergoplex_wrapper(...)   LAYOUT_gergoplex(__VA_ARGS__)

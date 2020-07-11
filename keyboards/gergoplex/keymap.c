@@ -1,24 +1,10 @@
 #include QMK_KEYBOARD_H
 #include "spektroskop.h"
-
-enum layers { _BASE, _LSFT, _RSFT, _LSYM, _RSYM, _FUN };
-enum keycodes { GUI_TAB = SAFE_RANGE, ALT_TAB, CTL_TAB };
+#include "make_combos.h"
 
 #define BSP_GUI LGUI_T(KC_BSPC)
 #define ESC_ALT LALT_T(KC_ESC)
-#define FUN_SLS LT(_FUN, KC_SLSH)
-#define FUN_Z LT(_FUN, KC_Z)
-#define GUI_1 LGUI(KC_1)
-#define GUI_2 LGUI(KC_2)
-#define GUI_3 LGUI(KC_3)
-#define S_ENT LSFT(KC_ENT)
-#define SFT_ENT LT(_LSFT, KC_ENT)
-#define SFT_SPC LT(_RSFT, KC_SPC)
 #define TAB_CTL LCTL_T(KC_TAB)
-#define TT_LSYM TT(_LSYM)
-#define TT_RSYM TT(_RSYM)
-
-#include "make_combos.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_gergoplex(
