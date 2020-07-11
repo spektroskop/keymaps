@@ -5,49 +5,49 @@
 #define OS_SYM OSL(_SYM)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT_planck_grid(
-    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    KC_LCTL, FUN_Z,   KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  FUN_SLS, KC_RCTL,
+  [_BASE] = LAYOUT_planck_grid_wrapper(
+    KC_TAB,  __________________BASE_L1__________________, __________________BASE_R1__________________, KC_BSPC,
+    KC_ESC,  __________________BASE_L2__________________, __________________BASE_R2______________SCLN, KC_QUOT,
+    KC_LCTL, FUN_______________BASE_L3__________________, __________________BASE_R3_______________FUN, KC_RCTL,
     XXXXXXX, XXXXXXX, KC_LGUI, KC_LALT, SFT_ENT, OS_SYM,  OS_SYM,  SFT_SPC, KC_LALT, KC_RGUI, XXXXXXX, XXXXXXX
   ),
 
-  [_LSFT] = LAYOUT_planck_grid(
-    S_TAB,   S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P), KC_BSPC,
-    _______, S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_COLN, KC_DQUO,
-    XXXXXXX, S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), S(KC_N), S(KC_M), KC_COMM, KC_DOT,  KC_QUES, XXXXXXX,
+  [_LSFT] = LAYOUT_planck_grid_wrapper(
+    S_TAB,   __________________SFT_L1___________________, __________________SFT_R1___________________, KC_BSPC,
+    _______, __________________SFT_L2___________________, __________________SFT_R2_______________COLN, KC_DQUO,
+    XXXXXXX, __________________SFT_L3___________________, __________________SFT_R3___________________, XXXXXXX,
     _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, TT_RSYM, _______, _______, _______, _______
   ),
 
-  [_RSFT] = LAYOUT_planck_grid(
-    S_TAB,   S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P), KC_BSPC,
-    _______, S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_COLN, KC_DQUO,
-    XXXXXXX, S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), S(KC_N), S(KC_M), KC_COMM, KC_DOT,  KC_QUES, XXXXXXX,
+  [_RSFT] = LAYOUT_planck_grid_wrapper(
+    S_TAB,   __________________SFT_L1___________________, __________________SFT_R1___________________, _______,
+    _______, __________________SFT_L2___________________, __________________SFT_R2_______________COLN, KC_DQUO,
+    XXXXXXX, __________________SFT_L3___________________, __________________SFT_R3___________________, XXXXXXX,
     _______, _______, _______, _______, TT_LSYM, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______
   ),
 
   [_SYM] = LAYOUT_planck_grid_wrapper(
-    KC_TAB,  __________________SYM__L1__________________, __________________SYM__R1__________________, KC_BSPC,
-    _______, __________________SYM__L2__________________, __________________SYM__R2__________________, XXXXXXX,
-    XXXXXXX, __________________SYM__L3__________________, __________________SYM__R3__________________, XXXXXXX,
+    KC_TAB,  __________________SYM_L1___________________, __________________SYM_R1___________________, _______,
+    _______, __________________SYM_L2___________________, __________________SYM_R2___________________, XXXXXXX,
+    XXXXXXX, __________________SYM_L3___________________, __________________SYM_R3___________________, XXXXXXX,
     _______, _______, _______, _______, XXXXXXX, _______, _______, XXXXXXX, _______, _______, _______, _______
   ),
 
   [_LSYM] = LAYOUT_planck_grid_wrapper(
-    KC_TAB,  __________________SYM__L1__________________, __________________SYM__R1__________________, KC_BSPC,
-    _______, __________________SYM__L2__________________, __________________SYM__R2__________________, XXXXXXX,
-    XXXXXXX, __________________SYM__L3__________________, __________________SYM__R3__________________, XXXXXXX,
+    KC_TAB,  __________________SYM_L1___________________, __________________SYM_R1___________________, _______,
+    _______, __________________SYM_L2___________________, __________________SYM_R2___________________, XXXXXXX,
+    XXXXXXX, __________________SYM_L3___________________, __________________SYM_R3___________________, XXXXXXX,
     _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______
   ),
 
   [_RSYM] = LAYOUT_planck_grid_wrapper(
-    KC_TAB,  __________________SYM__L1__________________, __________________SYM__R1__________________, KC_BSPC,
-    _______, __________________SYM__L2__________________, __________________SYM__R2__________________, XXXXXXX,
-    XXXXXXX, __________________SYM__L3__________________, __________________SYM__R3__________________, XXXXXXX,
+    KC_TAB,  __________________SYM_L1___________________, __________________SYM_R1___________________, _______,
+    _______, __________________SYM_L2___________________, __________________SYM_R2___________________, XXXXXXX,
+    XXXXXXX, __________________SYM_L3___________________, __________________SYM_R3___________________, XXXXXXX,
     _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______
   ),
 
-  [_FUN] = LAYOUT_planck_grid_wrapper(
+  [_FUN] = LAYOUT_planck_grid(
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
     XXXXXXX, XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
     _______, _______, GUI_1,   GUI_2,   GUI_3,   XXXXXXX, XXXXXXX, GUI_TAB, ALT_TAB, CTL_TAB, _______, _______,
