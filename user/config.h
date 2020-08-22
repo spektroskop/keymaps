@@ -1,6 +1,7 @@
 #pragma once
 
 #define ONESHOT_TAP_TOGGLE 2
+#undef ONESHOT_TIMEOUT
 #define ONESHOT_TIMEOUT 1000
 
 #define IGNORE_MOD_TAP_INTERRUPT
@@ -13,3 +14,5 @@
 #define COMBO_VARIABLE_LEN
 #undef COMBO_TERM
 #define COMBO_TERM 20
+
+#define TAPPING_TOGGLE 1

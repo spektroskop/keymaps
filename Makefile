@@ -40,6 +40,7 @@ unlink-user:
 
 $(eval $(call make-keyboard,planck,planck/ez,planck))
 $(eval $(call make-keyboard,gboards/gergoplex,gboards/gergoplex,gergoplex))
+$(eval $(call make-keyboard,centromere,centromere,centromere))
 $(eval $(call make-keyboard,crkbd,crkbd,crkbd))
 
 compile: $(compile_targets)

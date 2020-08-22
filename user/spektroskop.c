@@ -1,6 +1,23 @@
 #include QMK_KEYBOARD_H
 #include "spektroskop.h"
 
+bool gui_tab_active = false;
+bool alt_tab_active = false;
+bool ctl_tab_active = false;
+bool sym_hold = false;
+
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case FUN_Z:
+    case FUN_SLS:
+    case LT_LSFT:
+    case LT_RSFT:
+      return false;
+    default:
+        return true;
+    }
+}
+
 bool is_release(keyrecord_t *record) {
   return !record->event.pressed;
 }
@@ -8,10 +25,6 @@ bool is_release(keyrecord_t *record) {
 bool is_press(keyrecord_t *record) {
   return record->event.pressed;
 }
-
-bool gui_tab_active = false;
-bool alt_tab_active = false;
-bool ctl_tab_active = false;
 
 void activate_ctl_tab(void) {
     ctl_tab_active = true;
@@ -54,9 +67,9 @@ void deactivate_tabs(keyrecord_t *record) {
   }
 }
 
-void activate_tabs_base(struct tabs args) {
-  if (is_press(args.record)) {
-    if (args.keycode == args.gui_tab_code) {
+void activate_tabs(uint16_t keycode, keyrecord_t *record) {
+  if (is_press(record)) {
+    if (keycode == GUI_TAB) {
       if (ctl_tab_active) {
           deactivate_ctl_tab();
           activate_gui_tab();
@@ -68,7 +81,7 @@ void activate_tabs_base(struct tabs args) {
       } else {
           activate_gui_tab();
       }
-    } else if (args.keycode == args.alt_tab_code)  {
+    } else if (keycode == ALT_TAB)  {
       if (ctl_tab_active) {
           deactivate_ctl_tab();
           activate_alt_tab();
@@ -80,7 +93,7 @@ void activate_tabs_base(struct tabs args) {
       } else {
           activate_alt_tab();
       }
-    } else if (args.keycode == args.ctl_tab_code) {
+    } else if (keycode == CTL_TAB) {
       if (alt_tab_active) {
           deactivate_alt_tab();
           activate_ctl_tab();
@@ -96,17 +109,13 @@ void activate_tabs_base(struct tabs args) {
   }
 }
 
-bool sym_hold = false;
-
-void handle_sft_sym_base(struct sft_sym args) {
-  if (args.keycode == args.lsym_code || args.keycode == args.rsym_code) {
-    sym_hold = args.record->event.pressed;
-  } else if (args.keycode == args.lsft_code || args.keycode == args.rsft_code) {
-    if (is_release(args.record)) {
-      if (sym_hold) return;
-
-      layer_off(args.lsym_layer);
-      layer_off(args.rsym_layer);
+void handle_sft_sym(uint16_t keycode, keyrecord_t *record) {
+  if (keycode == TT_LSYM || keycode == TT_RSYM) {
+    sym_hold = record->event.pressed;
+  } else if (keycode == LT_LSFT || keycode == LT_RSFT) {
+    if (is_release(record) && !sym_hold) {
+      layer_off(_LSYM);
+      layer_off(_RSYM);
     }
   }
 }

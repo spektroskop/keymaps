@@ -3,67 +3,60 @@
 #include "make_combos.h"
 
 #define OS_SYM OSL(_SYM)
+#define ESC_CTL LCTL_T(KC_ESC)
+#define QUOT_CTL RCTL_T(KC_QUOT)
+#define DQUO_CTL RCTL_T(KC_DQUO)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_planck_grid_wrapper(
     KC_TAB,  __________________BASE_L1__________________, __________________BASE_R1__________________, KC_BSPC,
-    KC_ESC,  __________________BASE_L2__________________, __________________BASE_R2______________SCLN, KC_QUOT,
-    KC_LCTL, FUN_______________BASE_L3__________________, __________________BASE_R3_______________FUN, KC_RCTL,
-    XXXXXXX, XXXXXXX, KC_LGUI, KC_LALT, SFT_ENT, OS_SYM,  OS_SYM,  SFT_SPC, KC_LALT, KC_RGUI, XXXXXXX, XXXXXXX
+    ESC_CTL, __________________BASE_L2__________________, __________________BASE_R2______________SCLN, QUOT_CTL,
+    KC_LGUI, FUN_______________BASE_L3__________________, __________________BASE_R3_______________FUN, KC_RGUI,
+    XXXXXXX, XXXXXXX, XXXXXXX, KC_LALT, LT_LSFT, OS_SYM,  OS_SYM,  LT_RSFT, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX
   ),
 
   [_LSFT] = LAYOUT_planck_grid_wrapper(
     S_TAB,   __________________SFT_L1___________________, __________________SFT_R1___________________, KC_BSPC,
-    _______, __________________SFT_L2___________________, __________________SFT_R2_______________COLN, KC_DQUO,
-    XXXXXXX, __________________SFT_L3___________________, __________________SFT_R3___________________, XXXXXXX,
-    _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, TT_RSYM, _______, _______, _______, _______
+    _______, __________________SFT_L2___________________, __________________SFT_R2_______________COLN, DQUO_CTL,
+    _______, __________________SFT_L3___________________, __________________SFT_R3___________________, _______,
+    _______, _______, _______, _______, __via__, XXXXXXX, XXXXXXX, TT_RSYM, _______, _______, _______, _______
   ),
 
   [_RSFT] = LAYOUT_planck_grid_wrapper(
     S_TAB,   __________________SFT_L1___________________, __________________SFT_R1___________________, _______,
-    _______, __________________SFT_L2___________________, __________________SFT_R2_______________COLN, KC_DQUO,
-    XXXXXXX, __________________SFT_L3___________________, __________________SFT_R3___________________, XXXXXXX,
-    _______, _______, _______, _______, TT_LSYM, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______
+    _______, __________________SFT_L2___________________, __________________SFT_R2_______________COLN, DQUO_CTL,
+    _______, __________________SFT_L3___________________, __________________SFT_R3___________________, _______,
+    _______, _______, _______, _______, TT_LSYM, XXXXXXX, XXXXXXX, __via__, _______, _______, _______, _______
   ),
 
   [_SYM] = LAYOUT_planck_grid_wrapper(
     KC_TAB,  __________________SYM_L1___________________, __________________SYM_R1___________________, _______,
-    _______, __________________SYM_L2___________________, __________________SYM_R2___________________, XXXXXXX,
-    XXXXXXX, __________________SYM_L3___________________, __________________SYM_R3___________________, XXXXXXX,
-    _______, _______, _______, _______, XXXXXXX, _______, _______, XXXXXXX, _______, _______, _______, _______
+    _______, __________________SYM_L2___________________, __________________SYM_R2___________________, KC_RCTL,
+    _______, __________________SYM_L3___________________, __________________SYM_R3___________________, _______,
+    _______, _______, _______, _______, XXXXXXX, __via__, __via__, XXXXXXX, _______, _______, _______, _______
   ),
 
   [_LSYM] = LAYOUT_planck_grid_wrapper(
     KC_TAB,  __________________SYM_L1___________________, __________________SYM_R1___________________, _______,
-    _______, __________________SYM_L2___________________, __________________SYM_R2___________________, XXXXXXX,
-    XXXXXXX, __________________SYM_L3___________________, __________________SYM_R3___________________, XXXXXXX,
-    _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______
+    _______, __________________SYM_L2___________________, __________________SYM_R2___________________, KC_RCTL,
+    _______, __________________SYM_L3___________________, __________________SYM_R3___________________, _______,
+    _______, _______, _______, _______, __via__, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______
   ),
 
   [_RSYM] = LAYOUT_planck_grid_wrapper(
     KC_TAB,  __________________SYM_L1___________________, __________________SYM_R1___________________, _______,
-    _______, __________________SYM_L2___________________, __________________SYM_R2___________________, XXXXXXX,
-    XXXXXXX, __________________SYM_L3___________________, __________________SYM_R3___________________, XXXXXXX,
-    _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______
+    _______, __________________SYM_L2___________________, __________________SYM_R2___________________, KC_RCTL,
+    _______, __________________SYM_L3___________________, __________________SYM_R3___________________, _______,
+    _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, __via__, _______, _______, _______, _______
   ),
 
-  [_FUN] = LAYOUT_planck_grid(
-    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-    XXXXXXX, XXXXXXX, KC_HOME, KC_PGUP, KC_PGDN, KC_END,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
-    _______, _______, GUI_1,   GUI_2,   GUI_3,   XXXXXXX, XXXXXXX, GUI_TAB, ALT_TAB, CTL_TAB, _______, _______,
+  [_FUN] = LAYOUT_planck_grid_wrapper(
+    _______, __________________FUN_L1___________________, __________________FUN_R1___________________, _______,
+    _______, __________________FUN_L2___________________, __________________FUN_R2___________________, KC_RCTL,
+    _______, __________________FUN_L3___________________, __________________FUN_R3___________________, _______,
     _______, _______, _______, _______, KC_LSFT, XXXXXXX, XXXXXXX, KC_RSFT, _______, _______, _______, _______
   ),
 };
-
-bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-    case FUN_Z: case FUN_SLS:
-    case SFT_ENT: case SFT_SPC:
-      return false;
-    default:
-        return true;
-    }
-}
 
 void set_led_levels(int left, int right) {
   planck_ez_left_led_level(left);
@@ -88,24 +81,11 @@ void keyboard_post_init_user(void) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   switch (get_highest_layer(state)) {
-  case _SYM:  
-    set_led_levels(16, 16); 
-    break;
-
-  case _LSYM: 
-    set_led_levels(16, 0); 
-    break;
-
-  case _RSYM: 
-    set_led_levels(0, 16); 
-    break;
-
-  case _FUN: 
-    set_led_levels(16, 16); 
-    break;
-
-  default: 
-    set_led_levels(0, 0);
+  case _SYM: set_led_levels(16, 16); break;
+  case _LSYM: set_led_levels(16, 0); break;
+  case _RSYM:set_led_levels(0, 16); break;
+  case _FUN:set_led_levels(16, 16); break;
+  default: set_led_levels(0, 0);
   }
 
   return state;
@@ -113,20 +93,12 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-  case SFT_ENT: case SFT_SPC: case TT_LSYM: case TT_RSYM:
-    handle_sft_sym(.record=record, .keycode=keycode,
-      .lsft_code=SFT_ENT, .rsft_code=SFT_SPC,
-      .lsym_code=TT_LSYM, .rsym_code=TT_RSYM,
-      .lsym_layer=_LSYM,  .rsym_layer=_RSYM
-    )
+  case LT_LSFT: case LT_RSFT: case TT_LSYM: case TT_RSYM:
+    handle_sft_sym(keycode, record);
     break;
 
   case GUI_TAB: case ALT_TAB: case CTL_TAB:
-    activate_tabs(.record=record, .keycode=keycode,
-      .gui_tab_code=GUI_TAB,
-      .alt_tab_code=ALT_TAB,
-      .ctl_tab_code=CTL_TAB
-    );
+    activate_tabs(keycode, record);
     break;
 
   case FUN_Z: case FUN_SLS:

@@ -4,19 +4,18 @@
 
 enum layers {
   _BASE,
-  _LSFT,
-  _RSFT,
-  _SYM,
-  _LSYM,
-  _RSYM,
+  _LSFT, _RSFT,
+  _SYM, _LSYM, _RSYM,
   _FUN,
 };
 
 enum keycodes {
-  GUI_TAB = SAFE_RANGE,
-  ALT_TAB,
-  CTL_TAB,
+  DUMMY = SAFE_RANGE,
+  GUI_TAB, ALT_TAB, CTL_TAB,
 };
+
+
+#define __via__ _______
 
 #define FUN_SLS LT(_FUN, KC_SLSH)
 #define FUN_Z LT(_FUN, KC_Z)
@@ -24,14 +23,15 @@ enum keycodes {
 #define GUI_2 LGUI(KC_2)
 #define GUI_3 LGUI(KC_3)
 #define S_TAB S(KC_TAB)
-#define SFT_ENT LT(_LSFT, KC_ENT)
-#define SFT_SPC LT(_RSFT, KC_SPC)
+#define LT_LSFT LT(_LSFT, KC_ENT)
+#define LT_RSFT LT(_RSFT, KC_SPC)
 #define TT_LSYM TT(_LSYM)
 #define TT_RSYM TT(_RSYM)
 
 #define LAYOUT_planck_grid_wrapper(...) LAYOUT_planck_grid(__VA_ARGS__)
-#define LAYOUT_wrapper(...)             LAYOUT(__VA_ARGS__)
-#define LAYOUT_gergoplex_wrapper(...)   LAYOUT_gergoplex(__VA_ARGS__)
+#define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
+#define LAYOUT_gergoplex_wrapper(...) LAYOUT_gergoplex(__VA_ARGS__)
+#define LAYOUT_split_3x5_3_wrapper(...) LAYOUT_split_3x5_3(__VA_ARGS__)
 
 #define __________________BASE_L1__________________ KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
 #define __________________BASE_R1__________________ KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
@@ -56,33 +56,16 @@ enum keycodes {
 #define __________________SYM_L3___________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define __________________SYM_R3___________________ XXXXXXX, XXXXXXX, KC_COMM, KC_DOT,  XXXXXXX
 
+#define __________________FUN_L1___________________ KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6
+#define __________________FUN_R1___________________ KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11
+#define __________________FUN_L2___________________ KC_F11,  KC_HOME, KC_PGUP, KC_PGDN, KC_END
+#define __________________FUN_R2___________________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_F12
+#define __________________FUN_L3___________________ __via__, GUI_1,   GUI_2,   GUI_3,   XXXXXXX
+#define __________________FUN_R3___________________ XXXXXXX, GUI_TAB, ALT_TAB, CTL_TAB, __via__
+
 bool is_release(keyrecord_t *record);
 bool is_press(keyrecord_t *record);
-
-struct sft_sym {
-  keyrecord_t *record;
-  uint16_t keycode;
-  uint16_t lsft_code;
-  uint16_t rsft_code;
-  uint16_t lsym_code;
-  uint16_t rsym_code;
-  int lsym_layer;
-  int rsym_layer;
-};
-
-void handle_sft_sym_base(struct sft_sym args);
-#define handle_sft_sym(...) handle_sft_sym_base((struct sft_sym){__VA_ARGS__});
-
-struct tabs {
-  keyrecord_t *record;
-  uint16_t keycode;
-  uint16_t gui_tab_code;
-  uint16_t alt_tab_code;
-  uint16_t ctl_tab_code;
-};
-
-void activate_tabs_base(struct tabs args);
-#define activate_tabs(...) activate_tabs_base((struct tabs){__VA_ARGS__});
+void handle_sft_sym(uint16_t keycode, keyrecord_t *record);
+void activate_tabs(uint16_t keycode, keyrecord_t *record);
 void deactivate_tabs(keyrecord_t *record);
-
 bool clear_oneshots(keyrecord_t *record);
