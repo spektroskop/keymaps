@@ -12,7 +12,7 @@ compile-$(3): $(QMK_HOME)/users/spektroskop $(QMK_HOME)/keyboards/$(1)/keymaps/s
 	qmk compile -kb $(2) -km spektroskop-$(3)
 
 flash-$(3): $(QMK_HOME)/users/spektroskop $(QMK_HOME)/keyboards/$(1)/keymaps/spektroskop-$(3)
-	qmk flash -kb $(2) -km spektroskop-$(3)
+	qmk flash -kb $(2) -km spektroskop-$(3) $(4)
 
 unlink-$(3):
 	rm -f $(QMK_HOME)/keyboards/$(1)/keymaps/spektroskop-$(3)
@@ -38,10 +38,10 @@ $(QMK_HOME)/users/spektroskop:
 unlink-user:
 	rm -f $(QMK_HOME)/users/spektroskop
 
-$(eval $(call make-keyboard,planck,planck/ez,planck))
-$(eval $(call make-keyboard,gboards/gergoplex,gboards/gergoplex,gergoplex))
-$(eval $(call make-keyboard,centromere,centromere,centromere))
-$(eval $(call make-keyboard,crkbd,crkbd,crkbd))
+$(eval $(call make-keyboard,planck,planck/ez,planck,))
+$(eval $(call make-keyboard,gboards/gergoplex,gboards/gergoplex,gergoplex,))
+$(eval $(call make-keyboard,centromere,centromere,centromere,))
+$(eval $(call make-keyboard,crkbd,crkbd,crkbd,-bl dfu))
 
 compile: $(compile_targets)
 
