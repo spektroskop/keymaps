@@ -39,7 +39,9 @@ enum keycodes {
 #define __________________BASE_R2______________SCLN KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
 #define __________________BASE_R2______________QUOT KC_H,    KC_J,    KC_K,    KC_L,    KC_QUOT
 #define FUN_______________BASE_L3__________________ FUN_Z,   KC_X,    KC_C,    KC_V,    KC_B
+#define __________________BASE_L3__________________ KC_Z,    KC_X,    KC_C,    KC_V,    KC_B
 #define __________________BASE_R3_______________FUN KC_N,    KC_M,    KC_COMM, KC_DOT,  FUN_SLS
+#define __________________BASE_R3__________________ KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
 
 #define __________________SFT_L1___________________ S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T)
 #define __________________SFT_R1___________________ S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P)
@@ -56,8 +58,8 @@ enum keycodes {
 #define __________________SYM_L3___________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define __________________SYM_R3___________________ XXXXXXX, XXXXXXX, KC_COMM, KC_DOT,  XXXXXXX
 
-#define __________________FUN_L1___________________ KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6
-#define __________________FUN_R1___________________ KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11
+#define __________________FUN_L1___________________ KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5
+#define __________________FUN_R1___________________ KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
 #define __________________FUN_L2___________________ KC_F11,  KC_HOME, KC_PGUP, KC_PGDN, KC_END
 #define __________________FUN_R2___________________ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_F12
 #define __________________FUN_L3___________________ __via__, GUI_1,   GUI_2,   GUI_3,   XXXXXXX
